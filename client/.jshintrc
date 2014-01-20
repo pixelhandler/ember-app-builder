@@ -23,7 +23,7 @@
         "jQuery",
         "$",
         "expectAssertion",
-        "exports" 
+        "exports"
     ],
 
     "node" : false,
