@@ -20,3 +20,4 @@ npm-debug.log
 pids
 public/*.js
 public/*.css
+tags
