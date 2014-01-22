@@ -13,8 +13,11 @@
   "license": "",
   "dependencies": {
     "express": "~3.4.2",
-    "cors": "*"
+    "cors": "*",
+    "debug": "*"
   },
   "devDependencies": {
+    "mocha": "*",
+    "supertest": "*"
   }
 }
