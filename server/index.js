@@ -8,7 +8,8 @@ var express = require('express'),
       var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
       callback(null, originIsWhitelisted);
     }
-  };
+  },
+  debug = require('debug')('http');
 
 // Config
 app.configure(function () {
@@ -25,9 +26,23 @@ app.get('/ping', cors(options), function (req, res) {
 });
 
 app.get('/posts', cors(options), function (req, res) {
-  db.findPosts(10, function (err, posts) {
-    if (!err && posts.length > 0) {
-      res.send({ posts: posts});
+  db.findPosts(req.query, function (err, payload) {
+    if (err) {
+      debug(err);
+      res.send(500);
+    } else {
+      res.send(payload);
+    }
+  });
+});
+
+app.get('/posts/:id', cors(options), function (req, res) {
+  db.findPost(req.params.id, function (err, payload) {
+    if (err) {
+      debug(err);
+      res.send(500);
+    } else {
+      res.send(payload);
     }
   });
 });

@@ -38,7 +38,4 @@ ci: dist
 server: lint
 	@brunch watch --server
 
-api:
-	@node ../server/index.js
-
 .PHONY: build clean dist doc docfiles install lint prod test coverage ci server

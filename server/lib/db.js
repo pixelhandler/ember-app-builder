@@ -89,38 +89,87 @@ function createTableSuccess(tableName) {
   @param {Number} maxResults
   @param {Function} callback(err, results)
 **/
-module.exports.findPosts = function (maxResults, callback) {
+module.exports.findPosts = function (query, callback) {
+  var metaPartial = buildMeta(query);
+  onConnect(function (err, connection) {
+    if (err) logerror(err);
+    posts = r.db(dbConfig.db).table('posts');
+    posts.count().run(connection, function (err, results) {
+      if (err) logerror(err);
+      var meta = metaPartial(results);
+      logdebug('Total Posts: ' + meta.total);
+      posts.orderBy(r[meta.order](meta.sortBy))
+        .skip(meta.offset)
+        .limit(meta.limit)
+        .run(connection, function (err, cursor) {
+          if (err) {
+            findError(err, connection, callback);
+          } else {
+            findPostsSuccess(cursor, connection, callback, meta);
+          }
+        });
+    });
+  });
+};
+
+/**
+  @method findPost
+  @param {String} id
+  @param {Function} callback(err, result)
+**/
+module.exports.findPost = function (id, callback) {
   onConnect(function (err, connection) {
     r.db(dbConfig.db)
       .table('posts')
-      //.orderBy(r.desc('timestamp'))
-      .limit(maxResults)
-      .run(connection, function (err, cursor) {
+      .get(id)
+      .run(connection, function (err, post) {
         if (err) {
-          findPostsError(err, connection, callback);
+          findError(err, connection, callback);
         } else {
-          findPostsSuccess(cursor, connection, callback);
+          findPostSuccess(post, connection, callback);
         }
       });
   });
 };
 
-function findPostsError(err, connection, callback) {
-  logerror("[ERROR][%s][findPosts] %s:%s\n%s", connection._id, err.name, err.msg, err.message);
+
+function buildMeta(query) {
+  query.limit = (query.limit)? parseInt(query.limit, 10) : 10;
+  query.offset = (query.offset)? parseInt(query.offset, 10) : 0;
+  query.sortBy = query.sortBy || 'date';
+  query.order = query.order || 'desc';
+  return function metaPartial(total) {
+    return {
+      limit: query.limit,
+      offset: query.offset,
+      sortBy: query.sortBy,
+      order: query.order,
+      total: total
+    };
+  };
+}
+
+function findError(err, connection, callback) {
+  logerror("[ERROR][%s][find] %s:%s\n%s", connection._id, err.name, err.msg, err.message);
   callback(null, []);
   connection.close();
 }
 
-function findPostsSuccess(cursor, connection, callback) {
+function findPostsSuccess(cursor, connection, callback, meta) {
   cursor.toArray(function(err, results) {
     if (err) {
-      logerror("[ERROR][%s][findPosts][toArray] %s:%s\n%s", connection._id, err.name, err.msg, err.message);
+      logerror("[ERROR][%s][find][toArray] %s:%s\n%s", connection._id, err.name, err.msg, err.message);
       callback(null, []);
     } else {
-      callback(null, results);
+      callback(null, { posts: results, meta: meta });
     }
     connection.close();
   });
+}
+
+function findPostSuccess(json, connection, callback) {
+  callback(null, { posts: [ json ] });
+  connection.close();
 }
 
 /**
@@ -132,7 +181,7 @@ function onConnect(callback) {
   var settings = { host: dbConfig.host, port: dbConfig.port };
   r.connect(settings, function (err, connection) {
     assert.ok(err === null, err);
-    connection._id = Math.floor(Math.random()*10001);
+    connection._id = Math.floor(Math.random() * 10001);
     callback(err, connection);
   });
 }

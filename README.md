@@ -17,7 +17,7 @@ See: server/package.json
 
 ## Commands
 
-### client-side
+### Client-side
 
 The client directory has a Makefile with many commands
 
@@ -27,7 +27,13 @@ Watch, build and reload: `make server`
 
 Start (server) API script: `make api`
 
-### server-side
+### Server-side
 
 * `cd server`
 * `node index.js`
+
+## Roadmap
+
+[x] API endpoints for posts
+[ ] List posts (blog index)
+[ ] View post (blog detail)
