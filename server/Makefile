@@ -4,6 +4,10 @@ install:
 db:
 	@rethinkdb
 
+seed:
+	@./bin/create_blog_db.js
+	@./bin/seed_blog_db.js
+
 lint:
 	@jshint lib/* index.js tests/*
 
