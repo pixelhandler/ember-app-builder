@@ -1,6 +1,6 @@
 var express = require('express'),
   app = express(),
-  db = require('./lib/db'),
+  db = require('./lib/rethinkdb_adapter'),
   whitelist = ['http://localhost:8000'],
   cors = require('cors'),
   options = {
@@ -18,7 +18,7 @@ app.configure(function () {
   app.options('*', cors(options)); // include before other routes
   app.use(app.router);
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  db.setup();
+  db.setup('blog', { catalogs: 'id', posts: 'id' });
 });
 
 app.get('/ping', cors(options), function (req, res) {
@@ -26,7 +26,7 @@ app.get('/ping', cors(options), function (req, res) {
 });
 
 app.get('/posts', cors(options), function (req, res) {
-  db.findPosts(req.query, function (err, payload) {
+  db.findQuery('posts', req.query, function (err, payload) {
     if (err) {
       debug(err);
       res.send(500);
@@ -37,7 +37,7 @@ app.get('/posts', cors(options), function (req, res) {
 });
 
 app.get('/posts/:id', cors(options), function (req, res) {
-  db.findPost(req.params.id, function (err, payload) {
+  db.find('posts', req.params.id, function (err, payload) {
     if (err) {
       debug(err);
       res.send(500);

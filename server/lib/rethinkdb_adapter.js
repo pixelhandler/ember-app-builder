@@ -1,56 +1,33 @@
 /**
-  @module db
-  @submodule setup
+  @module rethinkdb_adapter
 **/
 
 var r = require('rethinkdb'),
+  db = require('./db_adapter'),
   assert = require('assert'),
   logdebug = require('debug')('rdb:debug'),
   logerror = require('debug')('rdb:error');
-
-// RethinkDB database settings. Defaults can be overridden using environment variables.
-var dbConfig = {
-  host: process.env.RDB_HOST || 'localhost',
-  port: parseInt(process.env.RDB_PORT) || 28015,
-  db  : process.env.RDB_DB || 'blog',
-  tables: {
-    'catalogs': 'id',
-    'posts': 'id'
-  }
-};
-
-/**
-  @method setup
-
-  Connect to RethinkDB instance and perform a basic database setup:
-
-  - create the `RDB_DB` database (defaults to `blog`)
-  - create tables `catalogs`, `posts` in this database
-**/
-module.exports.setup = function() {
-  r.connect({host: dbConfig.host, port: dbConfig.port }, connectCallback);
-};
 
 // Callbacks
 
 function connectCallback(err, connection) {
   assert.ok(err === null, err);
-  r.dbCreate(dbConfig.db).run(connection, function dbCreateCallback(err, result) {
+  r.dbCreate(adapter.db).run(connection, function dbCreateCallback(err, result) {
     if (err) {
       createDbError(err);
     } else {
       createDbSuccess();
     }
-    for (var tableName in dbConfig.tables) {
+    for (var tableName in adapter.tables) {
       createDbTable(connection, tableName);
     }
   });
 }
 
 function createDbTable(connection, tableName) {
-  var settings = { primaryKey: dbConfig.tables[tableName] };
+  var settings = { primaryKey: adapter.tables[tableName] };
 
-  r.db(dbConfig.db).tableCreate(tableName, settings).run(connection, createDbTableCallback);
+  r.db(adapter.db).tableCreate(tableName, settings).run(connection, createDbTableCallback);
 }
 
 function createDbTableCallback(err, result) {
@@ -64,11 +41,11 @@ function createDbTableCallback(err, result) {
 // Logging Callbacks
 
 function createDbError(err) {
-  logdebug("[DEBUG] RethinkDB database '%s' already exists (%s:%s)\n%s", dbConfig.db, err.name, err.msg, err.message);
+  logdebug("[DEBUG] RethinkDB database '%s' already exists (%s:%s)\n%s", adapter.db, err.name, err.msg, err.message);
 }
 
 function createDbSuccess() {
-  logdebug("[INFO ] RethinkDB database '%s' created", dbConfig.db);
+  logdebug("[INFO ] RethinkDB database '%s' created", adapter.db);
 }
 
 function createTableError(err, tableName) {
@@ -84,20 +61,21 @@ function createTableSuccess(tableName) {
   Query methods
 **/
 
+
 /**
-  @method findPosts
-  @param {Number} maxResults
-  @param {Function} callback(err, results)
+  @method findQuery
+  @param {String} type - name of resource
+  @param {Object} query - key/value pairs
+  @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-module.exports.findPosts = function (query, callback) {
+db.Adapter.prototype.findQuery = function (type, query, callback) {
   var metaPartial = buildMeta(query);
   onConnect(function (err, connection) {
     if (err) logerror(err);
-    posts = r.db(dbConfig.db).table('posts');
+    posts = r.db(adapter.db).table(type);
     posts.count().run(connection, function (err, results) {
       if (err) logerror(err);
       var meta = metaPartial(results);
-      logdebug('Total Posts: ' + meta.total);
       posts.orderBy(r[meta.order](meta.sortBy))
         .skip(meta.offset)
         .limit(meta.limit)
@@ -105,7 +83,7 @@ module.exports.findPosts = function (query, callback) {
           if (err) {
             findError(err, connection, callback);
           } else {
-            findPostsSuccess(cursor, connection, callback, meta);
+            findQuerySuccess(cursor, connection, callback, meta);
           }
         });
     });
@@ -113,25 +91,25 @@ module.exports.findPosts = function (query, callback) {
 };
 
 /**
-  @method findPost
+  @method find
+  @param {String} type - name of resource
   @param {String} id
-  @param {Function} callback(err, result)
+  @param {Function} callback(err, result) - Callback args: Error, JSON Result
 **/
-module.exports.findPost = function (id, callback) {
+db.Adapter.prototype.find = function (type, id, callback) {
   onConnect(function (err, connection) {
-    r.db(dbConfig.db)
-      .table('posts')
+    r.db(adapter.db)
+      .table(type)
       .get(id)
-      .run(connection, function (err, post) {
+      .run(connection, function (err, record) {
         if (err) {
           findError(err, connection, callback);
         } else {
-          findPostSuccess(post, connection, callback);
+          findSuccess(record, connection, callback);
         }
       });
   });
 };
-
 
 function buildMeta(query) {
   query.limit = (query.limit)? parseInt(query.limit, 10) : 10;
@@ -155,7 +133,7 @@ function findError(err, connection, callback) {
   connection.close();
 }
 
-function findPostsSuccess(cursor, connection, callback, meta) {
+function findQuerySuccess(cursor, connection, callback, meta) {
   cursor.toArray(function(err, results) {
     if (err) {
       logerror("[ERROR][%s][find][toArray] %s:%s\n%s", connection._id, err.name, err.msg, err.message);
@@ -167,7 +145,7 @@ function findPostsSuccess(cursor, connection, callback, meta) {
   });
 }
 
-function findPostSuccess(json, connection, callback) {
+function findSuccess(json, connection, callback) {
   callback(null, { posts: [ json ] });
   connection.close();
 }
@@ -178,7 +156,7 @@ function findPostSuccess(json, connection, callback) {
   and fail fast in case of a connection error.
 **/
 function onConnect(callback) {
-  var settings = { host: dbConfig.host, port: dbConfig.port };
+  var settings = { host: adapter.host, port: adapter.port };
   r.connect(settings, function (err, connection) {
     assert.ok(err === null, err);
     connection._id = Math.floor(Math.random() * 10001);
@@ -201,3 +179,36 @@ function onConnect(callback) {
         query2.run(connection, callback);
       }
 **/
+
+
+// RethinkDB database settings.
+// Defaults can be overridden using environment variables.
+var adapter = new db.Adapter({
+  host: process.env.RDB_HOST || 'localhost',
+  port: parseInt(process.env.RDB_PORT) || 28015,
+  db: process.env.RDB_DB
+});
+
+// export find method
+module.exports.find = adapter.find;
+
+// export findQuery method
+module.exports.findQuery = adapter.findQuery;
+
+/**
+  @method setup
+
+  Connect to RethinkDB instance and perform a basic database setup:
+
+  - create the `RDB_DB` database (defaults to `blog`)
+  - create tables `catalogs`, `posts` in this database
+
+  @param {String} db (optional) - database name
+  @param {Object} tables (optional) - table names as properties
+    with primary key assigned to name
+**/
+module.exports.setup = function(db, tables) {
+  adapter.db = db || adapter.db;
+  adapter.tables = tables || adapter.tables;
+  r.connect({host: adapter.host, port: adapter.port }, connectCallback);
+};
