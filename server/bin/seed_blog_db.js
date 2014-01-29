@@ -12,6 +12,6 @@ r.connect({ host: 'localhost', port: 28015}, function (err, conn) {
 
 function logResult(err, result) {
   if (err) throw err;
-  console.log(JSON.stringify(result, null, 2));
+  console.log(JSON.stringify(result));
   process.exit();
 }

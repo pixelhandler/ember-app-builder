@@ -45,7 +45,7 @@ function createDbError(err) {
 }
 
 function createDbSuccess() {
-  logdebug("[INFO ] RethinkDB database '%s' created", adapter.db);
+  logdebug("[INFO] RethinkDB database '%s' created", adapter.db);
 }
 
 function createTableError(err, tableName) {
@@ -53,7 +53,7 @@ function createTableError(err, tableName) {
 }
 
 function createTableSuccess(tableName) {
-  logdebug("[INFO ] RethinkDB table '%s' created", tableName);
+  logdebug("[INFO] RethinkDB table '%s' created", tableName);
 }
 
 
@@ -136,7 +136,7 @@ function findError(err, connection, callback) {
 function findQuerySuccess(cursor, connection, callback, meta) {
   cursor.toArray(function(err, results) {
     if (err) {
-      logerror("[ERROR][%s][find][toArray] %s:%s\n%s", connection._id, err.name, err.msg, err.message);
+      logerror("[ERROR][%s][find][toArray] %s:%s\n%s", connection._id, err.name, err.message);
       callback(null, []);
     } else {
       callback(null, { posts: results, meta: meta });

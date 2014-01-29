@@ -46,7 +46,9 @@ module.exports.Adapter = Adapter;
   @param {String} id
   @param {Function} callback(err, result) - Callback args: Error, JSON Result
 **/
-Adapter.prototype.find = function (type, id, callback) {};
+Adapter.prototype.find = function (type, id, callback) {
+  return new NotImplementedError();
+};
 
 /**
   @method findQuery
@@ -54,7 +56,9 @@ Adapter.prototype.find = function (type, id, callback) {};
   @param {Object} query - key/value pairs
   @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-Adapter.prototype.findQuery = function (type, query, callback) {};
+Adapter.prototype.findQuery = function (type, query, callback) {
+  return new NotImplementedError();
+};
 
 /**
   @method findMany
@@ -62,7 +66,9 @@ Adapter.prototype.findQuery = function (type, query, callback) {};
   @param {Array} ids
   @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-Adapter.prototype.findMany = function (type, ids, callback) {};
+Adapter.prototype.findMany = function (type, ids, callback) {
+  return new NotImplementedError();
+};
 
 /**
   @method findAll
@@ -79,7 +85,9 @@ Adapter.prototype.findAll = function (type, callback) {
   @param {Object} record
   @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-Adapter.prototype.createRecord = function (type, record) {};
+Adapter.prototype.createRecord = function (type, record) {
+  return new NotImplementedError();
+};
 
 /**
   @method updateRecord
@@ -87,7 +95,9 @@ Adapter.prototype.createRecord = function (type, record) {};
   @param {Object} record
   @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-Adapter.prototype.updateRecord = function (type, record) {};
+Adapter.prototype.updateRecord = function (type, record) {
+  return new NotImplementedError();
+};
 
 /**
   @method deleteRecord
@@ -95,4 +105,13 @@ Adapter.prototype.updateRecord = function (type, record) {};
   @param {Object} record
   @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-Adapter.prototype.deleteRecord = function (type, record) {};
+Adapter.prototype.deleteRecord = function (type, record) {
+  return new NotImplementedError();
+};
+
+var NotImplementedError = function (name, message) {
+  this.name = name || 'NotImplementedError';
+  this.message = message || 'Method Not Implemeted.';
+};
+NotImplementedError.prototype = new Error();
+NotImplementedError.prototype.constructor = NotImplementedError;
