@@ -1,1 +1,11 @@
-{{ outlet }}
+<div class="navbar">
+  <div class="navbar-inner">
+    {{#link-to 'index' class='brand'}}Bloggr{{/link-to}}
+    <ul class="nav">
+      <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
+      <li>{{#link-to 'about'}}About{{/link-to}}</li>
+    </ul>
+  </div>
+</div>
+
+{{outlet}}

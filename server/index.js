@@ -47,6 +47,17 @@ app.get('/posts/:id', cors(options), function (req, res) {
   });
 });
 
+app.put('/posts/:id', cors(options), function (req, res) {
+  db.updateRecord('posts', req.params.id, req.body.post, function (err, payload) {
+    if (err) {
+      debug(err);
+      res.send(500);
+    } else {
+      res.send(payload);
+    }
+  });
+});
+
 if (!module.parent) {
   app.listen(8888);
   console.log('CORS-enabled web server listening on port 8888');

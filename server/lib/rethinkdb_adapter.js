@@ -150,6 +150,33 @@ function findSuccess(json, connection, callback) {
   connection.close();
 }
 
+
+/**
+  @method updateRecord
+  @param {String} type
+  @param {String) id
+  @param {Object} record
+  @param {Function} callback(err, results) - Callback args: Error, Results Array
+**/
+db.Adapter.prototype.updateRecord = function (type, id, record, callback) {
+  var payload = record;
+  onConnect(function (err, connection) {
+    r.db(adapter.db)
+      .table(type)
+      .get(id)
+      .update(payload, {return_vals: true})
+      .run(connection, function (err, result) {
+        if (err) {
+          findError(err, connection, callback);
+        } else {
+          var post = result.new_val;
+          callback(null, { "post": post });
+        }
+      });
+  });
+};
+
+
 /**
   A wrapper function for the RethinkDB API `r.connect`
   to keep the configuration details in a single function
@@ -194,6 +221,9 @@ module.exports.find = adapter.find;
 
 // export findQuery method
 module.exports.findQuery = adapter.findQuery;
+
+// export updateRecord method
+module.exports.updateRecord = adapter.updateRecord;
 
 /**
   @method setup

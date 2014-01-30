@@ -1,6 +1,7 @@
 // Router
 App.Router.map(function() {
-  this.resource('/');
-  this.resource('slides');
-  this.resource('slide', { path: '/slides/:slide_id' });
+  this.resource('about');
+  this.resource('posts', function() {
+    this.resource('post', { path: ':post_id' });
+  });
 });

@@ -4,6 +4,7 @@
         "App",
         "console",
         "Ember",
+        "Handlebars",
         "DS",
         "equal",
         "asyncEqual",
@@ -23,7 +24,9 @@
         "jQuery",
         "$",
         "expectAssertion",
-        "exports"
+        "exports",
+        "moment",
+        "showdown"
     ],
 
     "node" : false,

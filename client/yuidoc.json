@@ -5,7 +5,7 @@
   "url": "",
   "options": {
     "paths": [
-      "./packages/*/lib/*.js",
+      "./app/*.js",
     ],
     "outdir": "./docs"
   }

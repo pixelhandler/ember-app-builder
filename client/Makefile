@@ -1,4 +1,4 @@
-build: lint
+build: lint clean 
 	@brunch b
 
 clean:

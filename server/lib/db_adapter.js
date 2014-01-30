@@ -85,17 +85,18 @@ Adapter.prototype.findAll = function (type, callback) {
   @param {Object} record
   @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-Adapter.prototype.createRecord = function (type, record) {
+Adapter.prototype.createRecord = function (type, record, callback) {
   return new NotImplementedError();
 };
 
 /**
   @method updateRecord
   @param {String} type
+  @param {String) id
   @param {Object} record
   @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-Adapter.prototype.updateRecord = function (type, record) {
+Adapter.prototype.updateRecord = function (type, id, record, callback) {
   return new NotImplementedError();
 };
 
@@ -105,7 +106,7 @@ Adapter.prototype.updateRecord = function (type, record) {
   @param {Object} record
   @param {Function} callback(err, results) - Callback args: Error, Results Array
 **/
-Adapter.prototype.deleteRecord = function (type, record) {
+Adapter.prototype.deleteRecord = function (type, record, callback) {
   return new NotImplementedError();
 };
 
