@@ -11,14 +11,13 @@ exports.config = {
       defaultExtension: 'js',
       joinTo: {
         'app.js': /^app/,
-        'vendor.js': /^bower_components\/(jquery|handlebars|ember|ember-data|ember-state-manager)\/(jquery|handlebars|ember|ember-data|dist)(\/ember-states)?\.js$/
+        'vendor.js': /^bower_components\/(jquery|handlebars|ember|ember-data)\/(jquery|handlebars|ember|ember-data|dist)?\.js$/
       },
       order: {
         before: [
           'bower_components/jquery/jquery.js',
           'bower_components/handlebars/handlebars.js',
           'bower_components/ember/ember.js',
-          'bower_components/ember-state-manager/dist/ember-states.js',
           'bower_components/ember-data/ember-data.js',
           'app/helpers/format-date.js',
           'app/helpers/format-markdown.js',
@@ -31,7 +30,7 @@ exports.config = {
           'app/controllers/post.js'
         ],
         after: [
-          'app/fixtures.js'
+          //'app/fixtures.js'
         ]
       }
     },

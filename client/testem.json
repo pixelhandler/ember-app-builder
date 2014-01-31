@@ -1,13 +1,14 @@
 {
   "framework": "qunit",
   "src_files": [
-    "bower_components/jquery/jquery.js",
-    "bower_components/handlebars/handlebars.js",
-    "bower_components/ember/ember.js",
-    "bower_components/ember-data/ember-data.js",
-
-    "app/*.js",
-    "packages/*/tests/*_test.js"
+    "http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js",
+    "http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js",
+    "public/vendor.js",
+    "public/templates.js",
+    "public/app.js",
+    "tests/support/test-helpers.js",
+    "tests/**/*_test.js"
   ],
+  "launch_in_dev": ["phantomjs", "Chrome"],
   "launch_in_ci": ["phantomjs"]
 }
