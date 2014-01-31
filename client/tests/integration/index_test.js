@@ -1,9 +1,8 @@
 module('Index', {
-  setup: function () {
-    App.reset();
-  },
+  //setup: function () {},
   teardown: function () {
-    //Ember.run(App, 'destroy');
+    unload('post');
+    App.reset();
   }
 });
 
@@ -18,6 +17,6 @@ test('Index template', function () {
   expect(2);
   visit('/posts').then(function () {
     ok(exists('.text-warning'), 'Index template text exists.');
-    equal($.trim(find('table thead').text()), 'Recent Posts', 'Posts heading present');
+    equal(text('.text-warning'), 'Please select a post', 'Index text present.');
   });
 });

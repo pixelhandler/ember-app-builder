@@ -9,6 +9,7 @@
         "Handlebars",
         "DS",
         "moment",
+        "Showdown",
         "showdown",
         "visit",
         "find",
@@ -31,7 +32,11 @@
         "test",
         "module",
         "path",
-        "exists"
+        "exists",
+        "text",
+        "hasText",
+        "hyperlink",
+        "unload"
     ],
 
     "node" : false,
