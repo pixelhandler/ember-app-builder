@@ -1,33 +1,30 @@
 exports.config = {
   paths: {
     'public': 'public',
-    watched: ['app']
-  },
-  conventions: {
-    vendor: /^bower_components/
+    watched: ['app', 'vendor']
   },
   files: {
     javascripts: {
       defaultExtension: 'js',
       joinTo: {
         'app.js': /^app/,
-        'vendor.js': /^bower_components\/(jquery|handlebars|ember|ember-data)\/(jquery|handlebars|ember|ember-data|dist)?\.js$/
+        'vendor.js': /^vendor\/.+\.js$/
       },
       order: {
         before: [
-          'bower_components/jquery/jquery.js',
-          'bower_components/handlebars/handlebars.js',
-          'bower_components/ember/ember.js',
-          'bower_components/ember-data/ember-data.js',
-          'app/helpers/format-date.js',
-          'app/helpers/format-markdown.js',
-          'app/app.js',
-          'app/adapters/applications.js',
-          'adp/models/post.js',
-          'app/router.js',
-          'app/routes/posts.js',
-          'app/routes/post.js',
-          'app/controllers/post.js'
+          'vendor/jquery.js',
+          'vendor/handlebars.js',
+          'vendor/ember-canary.js',
+          'vendor/ember-data-canary.js',
+          //'app/helpers/format-date.js',
+          //'app/helpers/format-markdown.js',
+          'app/app.js'
+          //'app/adapters/applications.js',
+          //'adp/models/post.js',
+          //'app/router.js',
+          //'app/routes/posts.js',
+          //'app/routes/post.js',
+          //'app/controllers/post.js'
         ],
         after: [
           //'app/fixtures.js'
@@ -46,6 +43,11 @@ exports.config = {
       defaultExtension: 'hbs',
       joinTo: 'templates.js'
     }
+  },
+  conventions: {
+    assets: /assets[\\/]/,
+    ignored: /bower_components[\\/]/,//TODO allow _ prefix?
+    vendor: /vendor[\\/]/
   },
   modules: {
     //wrapper: function(path, data) {
@@ -76,8 +78,8 @@ exports.config = {
       files: {
         javascripts: {
           joinTo: {
-            'app.min.js': /^app/,
-            'vendor.min.js': /^bower_components\/(jquery|handlebars|ember|ember-data)\/(jquery|handlebars|ember|ember-data)\.min\.js$/
+            'app.min.js': /^app/
+            //'vendor.min.js': /^bower_components\/(jquery|handlebars|ember|ember-data)\/(jquery|handlebars|ember|ember-data)\.min\.js$/
           }
         }
       },

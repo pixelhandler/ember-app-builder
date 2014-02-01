@@ -18,6 +18,6 @@ logs
 node_modules
 npm-debug.log
 pids
-public/*.js
-public/*.css
+public
 tags
+vendor

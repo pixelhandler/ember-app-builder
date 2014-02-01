@@ -4,6 +4,7 @@ build: lint clean
 clean:
 	@rm -f ./public/*.js
 	@rm -f ./public/*.css
+	@rm -f ./public/*.html
 
 dist: clean build prod
 
@@ -17,6 +18,10 @@ install:
 	@npm install
 	@npm install grunt-blanket-qunit --save-dev
 	@bower install
+	@bin/vendor.sh
+
+canary:
+	@bin/canary.sh
 
 lint:
 	@jshint app/*
@@ -37,5 +42,6 @@ ci: dist
 
 server: lint
 	@brunch watch --server
+	@open http://localhost:8000/
 
 .PHONY: build clean dist doc docfiles install lint prod test coverage ci server
