@@ -16,19 +16,9 @@ exports.config = {
           'vendor/handlebars.js',
           'vendor/ember-canary.js',
           'vendor/ember-data-canary.js',
-          //'app/helpers/format-date.js',
-          //'app/helpers/format-markdown.js',
           'app/app.js'
-          //'app/adapters/applications.js',
-          //'adp/models/post.js',
-          //'app/router.js',
-          //'app/routes/posts.js',
-          //'app/routes/post.js',
-          //'app/controllers/post.js'
         ],
-        after: [
-          //'app/fixtures.js'
-        ]
+        after: []
       }
     },
     stylesheets: {
@@ -63,6 +53,11 @@ exports.config = {
     autoReload: {
       enabled: true
     }
+    // TODO add to package.json: "es6-module-transpiler-brunch": "*"
+    //es6ModuleTranspiler: {
+      //match: /^app/,
+      //debug: true
+    //}
   },
   server: {
     path: 'server.js',
@@ -78,8 +73,8 @@ exports.config = {
       files: {
         javascripts: {
           joinTo: {
-            'app.min.js': /^app/
-            //'vendor.min.js': /^bower_components\/(jquery|handlebars|ember|ember-data)\/(jquery|handlebars|ember|ember-data)\.min\.js$/
+            'app.min.js': /^app/,
+            'vendor.min.js': /^vendor\/.+\.js$/
           }
         }
       },

@@ -40,12 +40,12 @@ EMBER_DATA_DIR=$BOWER_DIR"/ember-data"
 copy_vendor_file $EMBER_DATA_FILE $EMBER_DATA_DIR $VENDOR_DIR
 
 SHOWDOWN_FILE="showdown.js"
-SHOWDOWN_DIR=$BOWER_DIR"/compressed"
+SHOWDOWN_DIR=$BOWER_DIR"/showdown/compressed"
 
 copy_vendor_file $SHOWDOWN_FILE $SHOWDOWN_DIR $VENDOR_DIR
 
-MOMENT_FILE="moment.js"
-MOMENT_DIR=$BOWER_DIR"momentjs/min"
+MOMENT_FILE="moment.min.js"
+MOMENT_DIR=$BOWER_DIR"/momentjs/min"
 
 copy_vendor_file $MOMENT_FILE $MOMENT_DIR $VENDOR_DIR
 

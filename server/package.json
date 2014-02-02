@@ -19,6 +19,7 @@
   "devDependencies": {
     "mocha": "*",
     "supertest": "*",
+    "request": "*",
     "async": "*"
   }
 }

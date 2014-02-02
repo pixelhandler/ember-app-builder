@@ -170,7 +170,7 @@ db.Adapter.prototype.updateRecord = function (type, id, record, callback) {
           findError(err, connection, callback);
         } else {
           var post = result.new_val;
-          callback(null, { "post": post });
+          callback(null, { "posts": [ post ] });
         }
       });
   });
