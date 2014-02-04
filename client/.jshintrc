@@ -41,8 +41,8 @@
     "unload"
   ],
 
-  "node": false,
-  "browser": false,
+  "node": true,
+  "browser": true,
   "boss": true,
   "curly": false,
   "debug": false,

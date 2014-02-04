@@ -1,21 +1,27 @@
+var sysPath = require('path');
+
+var environment = process.env.BRUNCH_ENV || 'development';
+
+console.log('Running Brunch in '+ environment +' environment');
+
 exports.config = {
   paths: {
     'public': 'public',
-    watched: ['app', 'vendor']
+    watched: ['app', 'vendor/' + environment]
   },
   files: {
     javascripts: {
       defaultExtension: 'js',
       joinTo: {
         'app.js': /^app/,
-        'vendor.js': /^vendor\/.+\.js$/
+        'vendor.js': new RegExp('^vendor\/'+ environment +'\/.+\.js$')
       },
       order: {
         before: [
-          'vendor/jquery.js',
-          'vendor/handlebars.js',
-          'vendor/ember-canary.js',
-          'vendor/ember-data-canary.js',
+          'vendor/'+ environment +'/jquery.js',
+          'vendor/'+ environment +'/handlebars.js',
+          'vendor/'+ environment +'/ember-canary.js',
+          'vendor/'+ environment +'/ember-data-canary.js',
           'app/app.js'
         ],
         after: [
@@ -61,9 +67,14 @@ exports.config = {
       sourceMaps: false,
       files: {
         javascripts: {
-          joinTo: {
-            'app.min.js': /^app/,
-            'vendor.min.js': /^vendor\/.+\.js$/
+          order: {
+            before: [
+              'vendor/'+ environment +'/jquery.min.js',
+              'vendor/'+ environment +'/handlebars.min.js',
+              'vendor/'+ environment +'/ember.prod.js',
+              'vendor/'+ environment +'/ember-data.prod.js',
+              'app/app.js'
+            ]
           }
         }
       },

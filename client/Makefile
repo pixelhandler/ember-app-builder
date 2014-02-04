@@ -19,6 +19,7 @@ install:
 	@npm install grunt-blanket-qunit --save-dev
 	@bower install
 	@bin/vendor.sh
+	@bin/canary.sh
 
 canary:
 	@bin/canary.sh

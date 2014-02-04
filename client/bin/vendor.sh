@@ -1,8 +1,12 @@
 #!/bin/bash
 
 CLIENT_DIR="$(dirname `pwd`)/client"
-VENDOR_DIR=$CLIENT_DIR"/vendor"
 BOWER_DIR=$CLIENT_DIR"/bower_components"
+VENDOR_DIR=$CLIENT_DIR"/vendor"
+DEV_DIR=$VENDOR_DIR"/development"
+PROD_DIR=$VENDOR_DIR"/production"
+
+rm -fr $DEV_DIR/*canary*
 
 function copy_vendor_file() {
   # $1 - filename, $2 - src directory, $3 - vendor directory
@@ -19,35 +23,34 @@ function copy_vendor_file() {
   find $3 -name "*"$1 -type f | xargs echo
 }
 
-JQUERY_FILE="jquery.js"
-JQUERY_DIR=$BOWER_DIR"/jquery"
+src=$BOWER_DIR"/jquery"
+copy_vendor_file jquery.js $src $DEV_DIR
+copy_vendor_file jquery.min.js $src $PROD_DIR
 
-copy_vendor_file $JQUERY_FILE $JQUERY_DIR $VENDOR_DIR
+src=$BOWER_DIR"/handlebars"
+copy_vendor_file handlebars.js $src $DEV_DIR
+copy_vendor_file handlebars.min.js $src $PROD_DIR
 
-HANDLEBARS_FILE="handlebars.js"
-HANDLEBARS_DIR=$BOWER_DIR"/handlebars"
+src=$BOWER_DIR"/ember"
+copy_vendor_file ember.js $src $DEV_DIR
+copy_vendor_file ember.prod.js $src $PROD_DIR
 
-copy_vendor_file $HANDLEBARS_FILE $HANDLEBARS_DIR $VENDOR_DIR
+src=$BOWER_DIR"/ember-data"
+copy_vendor_file ember-data.js $src $DEV_DIR
+copy_vendor_file ember-data.prod.js $src $PROD_DIR
 
-EMBER_FILE="ember.js"
-EMBER_DIR=$BOWER_DIR"/ember"
+src=$BOWER_DIR"/showdown"
+copy_vendor_file showdown.js $src"/src" $DEV_DIR
+copy_vendor_file showdown.js $src"/compressed" $PROD_DIR
 
-copy_vendor_file $EMBER_FILE $EMBER_DIR $VENDOR_DIR
+src=$BOWER_DIR"/momentjs"
+copy_vendor_file moment.js $src $DEV_DIR
+copy_vendor_file moment.min.js $src"/min" $PROD_DIR
 
-EMBER_DATA_FILE="ember-data.js"
-EMBER_DATA_DIR=$BOWER_DIR"/ember-data"
-
-copy_vendor_file $EMBER_DATA_FILE $EMBER_DATA_DIR $VENDOR_DIR
-
-SHOWDOWN_FILE="showdown.js"
-SHOWDOWN_DIR=$BOWER_DIR"/showdown/compressed"
-
-copy_vendor_file $SHOWDOWN_FILE $SHOWDOWN_DIR $VENDOR_DIR
-
-MOMENT_FILE="moment.min.js"
-MOMENT_DIR=$BOWER_DIR"/momentjs/min"
-
-copy_vendor_file $MOMENT_FILE $MOMENT_DIR $VENDOR_DIR
-
-
+unset CLIENT_DIR
+unset VENDOR_DIR
+unset BOWER_DIR
+unset DEV_DIR
+unset PROD_DIR
+unset src
 unset copy_vendor_file
