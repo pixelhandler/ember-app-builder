@@ -1,39 +1,33 @@
 # Ember App Builder
 
+
 ## Directories
 
-### client
+### [client](client)
 
-See: client/package.json and client/bower.json
+* See: [client/README.md](client/README.md)
 
-### server
+### [server](server)
 
-See: server/package.json
+* See: [server/package.json](server/package.json)
+
 
 ## Setup
 
 * `cd client && npm install && bower install`
 * `cd server && npm install`
 
-## Commands
+
+## Tasks / Commands
 
 ### Client-side
 
-The client directory has a Makefile with many commands
+* See [client/Makefile](client/Makefile)
 
-`cd client`
-
-Watch, build and reload: `make server`
-
-Start (server) API script: `make api`
+`cd client`, then watch, build and reload using `make server`
 
 ### Server-side
 
-* `cd server`
-* `node index.js`
+* See the [server/Makefile](server/Makefile)
 
-## Roadmap
-
-[x] API endpoints for posts
-[ ] List posts (blog index)
-[ ] View post (blog detail)
+`cd server`, `make db`, `make server`

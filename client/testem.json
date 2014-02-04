@@ -1,14 +1,11 @@
 {
   "framework": "qunit",
   "src_files": [
-    "http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js",
-    "http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js",
     "public/vendor.js",
-    "public/templates.js",
     "public/app.js",
     "tests/support/test-helpers.js",
     "tests/**/*_test.js"
   ],
-  "launch_in_dev": ["phantomjs", "Chrome"],
+  "launch_in_dev": ["phantomjs", "chrome", "safari", "firefox"],
   "launch_in_ci": ["phantomjs"]
 }

@@ -59,7 +59,7 @@ app.put('/posts/:id', cors(options), function (req, res) {
 });
 
 if (!module.parent) {
-  var port = process.env.SERVER_PORT || 8888
+  var port = process.env.SERVER_PORT || 8888;
   app.listen(port);
   console.log('CORS-enabled web server listening on port '+ port);
 } else {

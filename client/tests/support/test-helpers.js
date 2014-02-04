@@ -1,3 +1,5 @@
+require('init');
+
 (function (host) {
   var document = host.document,
     App = host.App,

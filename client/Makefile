@@ -31,7 +31,6 @@ prod: lint
 	@brunch build --production
 
 test: lint
-	@open http://localhost:7357/
 	@testem
 
 coverage: lint
