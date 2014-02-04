@@ -1,2 +1,3 @@
-// Application
-window.App = Ember.Application.create({});
+'use-strict';
+
+module.exports = Ember.Application.create();

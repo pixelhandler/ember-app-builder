@@ -1,6 +1,8 @@
+'use-strict';
+
 var attr = DS.attr;
 
-App.PostModel = DS.Model.extend({
+module.exports = App.PostModel = DS.Model.extend({
   title: attr('string'),
   author: attr(),
   date: attr('date'),

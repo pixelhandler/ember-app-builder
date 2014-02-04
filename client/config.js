@@ -18,7 +18,9 @@ exports.config = {
           'vendor/ember-data-canary.js',
           'app/app.js'
         ],
-        after: []
+        after: [
+          'app/init.js'
+        ]
       }
     },
     stylesheets: {
@@ -31,21 +33,13 @@ exports.config = {
       precompile: true,
       root: 'templates/',
       defaultExtension: 'hbs',
-      joinTo: 'templates.js'
+      joinTo: 'app.js'
     }
   },
   conventions: {
     assets: /assets[\\/]/,
-    ignored: /bower_components[\\/]/,//TODO allow _ prefix?
+    ignored: /bower_components[\\/]/,
     vendor: /vendor[\\/]/
-  },
-  modules: {
-    //wrapper: function(path, data) {
-      //return ["\n(function (window) {","/* ", path, " */", "\n\n", data, "\n", "}(window))"].join('');
-    //},
-    wrapper: false,
-    definition: false
-    //addSourceURLs: false
   },
   optimize: false,
   sourceMaps: false,
@@ -53,11 +47,6 @@ exports.config = {
     autoReload: {
       enabled: true
     }
-    // TODO add to package.json: "es6-module-transpiler-brunch": "*"
-    //es6ModuleTranspiler: {
-      //match: /^app/,
-      //debug: true
-    //}
   },
   server: {
     path: 'server.js',

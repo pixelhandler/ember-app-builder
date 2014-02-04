@@ -1,4 +1,6 @@
-App.PostController = Ember.ObjectController.extend({
+'use-strict';
+
+module.exports = App.PostController = Ember.ObjectController.extend({
   isEditing: false,
 
   actions: {
@@ -6,7 +8,7 @@ App.PostController = Ember.ObjectController.extend({
       this.set('isEditing', true);
     },
 
-    doneEditing: function() {
+    doneEditing: function () {
       this.set('isEditing', false);
       return true; // bubble up
     }
