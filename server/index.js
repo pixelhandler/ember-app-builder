@@ -25,6 +25,17 @@ app.get('/ping', cors(options), function (req, res) {
   res.send('pong');
 });
 
+app.post('/posts', cors(options), function (req, res) {
+  db.createRecord('posts', req.body.post, function (err, payload) {
+    if (err) {
+      debug(err);
+      res.send(500);
+    } else {
+      res.send(payload);
+    }
+  });
+});
+
 app.get('/posts', cors(options), function (req, res) {
   db.findQuery('posts', req.query, function (err, payload) {
     if (err) {
@@ -54,6 +65,17 @@ app.put('/posts/:id', cors(options), function (req, res) {
       res.send(500);
     } else {
       res.send(payload);
+    }
+  });
+});
+
+app.del('/posts/:id', cors(options), function (req, res) {
+  db.deleteRecord('posts', req.params.id, function (err) {
+    if (err) {
+      debug(err);
+      res.send(500);
+    } else {
+      res.send(204); // No Content
     }
   });
 });

@@ -5,6 +5,7 @@
 var r = require('rethinkdb'),
   db = require('./db_adapter'),
   assert = require('assert'),
+  inflect = require('inflect'),
   logdebug = require('debug')('rdb:debug'),
   logerror = require('debug')('rdb:error');
 
@@ -72,18 +73,18 @@ db.Adapter.prototype.findQuery = function (type, query, callback) {
   var metaPartial = buildMeta(query);
   onConnect(function (err, connection) {
     if (err) logerror(err);
-    posts = r.db(adapter.db).table(type);
-    posts.count().run(connection, function (err, results) {
+    var collection = r.db(adapter.db).table(type);
+    collection.count().run(connection, function (err, results) {
       if (err) logerror(err);
       var meta = metaPartial(results);
-      posts.orderBy(r[meta.order](meta.sortBy))
+      collection.orderBy(r[meta.order](meta.sortBy))
         .skip(meta.offset)
         .limit(meta.limit)
         .run(connection, function (err, cursor) {
           if (err) {
             findError(err, connection, callback);
           } else {
-            findQuerySuccess(cursor, connection, callback, meta);
+            findQuerySuccess(type, cursor, connection, callback, meta);
           }
         });
     });
@@ -105,7 +106,7 @@ db.Adapter.prototype.find = function (type, id, callback) {
         if (err) {
           findError(err, connection, callback);
         } else {
-          findSuccess(record, connection, callback);
+          findSuccess(type, record, connection, callback);
         }
       });
   });
@@ -133,23 +134,59 @@ function findError(err, connection, callback) {
   connection.close();
 }
 
-function findQuerySuccess(cursor, connection, callback, meta) {
+function findQuerySuccess(type, cursor, connection, callback, meta) {
   cursor.toArray(function(err, results) {
     if (err) {
       logerror("[ERROR][%s][find][toArray] %s:%s\n%s", connection._id, err.name, err.message);
       callback(null, []);
     } else {
-      callback(null, { posts: results, meta: meta });
+      var rootKey = inflect.pluralize(type);
+      var payload = { meta: meta };
+      payload[rootKey] = results;
+      callback(null, payload);
     }
     connection.close();
   });
 }
 
-function findSuccess(json, connection, callback) {
-  callback(null, { posts: [ json ] });
+function findSuccess(type, json, connection, callback) {
+  var payload = {};
+  var rootKey = inflect.pluralize(type);
+  payload[rootKey] = [ json ];
+  callback(null, payload);
   connection.close();
 }
 
+/**
+  @method createRecord
+  @param {String} type
+  @param {Object} record
+  @param {Function} callback(err, results) - Callback args: Error, Results Array
+**/
+db.Adapter.prototype.createRecord = function (type, record, callback) {
+  onConnect(function (err, connection) {
+    r.db(adapter.db)
+      .table(type)
+      .insert(record, {returnVals: true})
+      .run(connection, function (err, result) {
+        if (err) {
+          createError(err, connection, callback);
+        } else {
+          var json = result.new_val;
+          var rootKey = inflect.pluralize(type);
+          var payload = {};
+          payload[rootKey] = [ json ];
+          callback(null, payload);
+        }
+      });
+  });
+};
+
+function createError(err, connection, callback) {
+  logerror("[ERROR][%s][create] %s:%s\n%s", connection._id, err.name, err.msg, err.message);
+  callback(null, []);
+  connection.close();
+}
 
 /**
   @method updateRecord
@@ -167,12 +204,38 @@ db.Adapter.prototype.updateRecord = function (type, id, record, callback) {
       .update(payload, {return_vals: true})
       .run(connection, function (err, result) {
         if (err) {
-          findError(err, connection, callback);
+          updateError(err, connection, callback);
         } else {
-          var post = result.new_val;
-          callback(null, { "posts": [ post ] });
+          var json = result.new_val;
+          var rootKey = inflect.pluralize(type);
+          var payload = {};
+          payload[rootKey] = [ json ];
+          callback(null, payload);
         }
       });
+  });
+};
+
+function updateError(err, connection, callback) {
+  logerror("[ERROR][%s][update] %s:%s\n%s", connection._id, err.name, err.msg, err.message);
+  callback(null, []);
+  connection.close();
+}
+
+
+/**
+  @method deleteRecord
+  @param {String} type
+  @param {String} id
+  @param {Function} callback(err, results) - Callback args: Error, Results Array
+**/
+db.Adapter.prototype.deleteRecord = function (type, id, callback) {
+  onConnect(function (err, connection) {
+    r.db(adapter.db)
+      .table(type)
+      .get(id)
+      .delete()
+      .run(connection, callback);
   });
 };
 
@@ -222,8 +285,14 @@ module.exports.find = adapter.find;
 // export findQuery method
 module.exports.findQuery = adapter.findQuery;
 
+// export createRecord method
+module.exports.createRecord = adapter.createRecord;
+
 // export updateRecord method
 module.exports.updateRecord = adapter.updateRecord;
+
+// export deleteRecord method
+module.exports.deleteRecord = adapter.deleteRecord;
 
 /**
   @method setup

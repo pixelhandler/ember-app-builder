@@ -55,3 +55,12 @@ Uses Mocha with supertest to test API endpoints.
 
 The client test suite, needs the database seeded and API server running
 as it is configured as an integration testing suite.
+
+## Roadmap
+
+1. Finish Db Adapter
+1. Create Model using Schema
+1. Create Controller that binds db adapter to model instance and pass to
+   view for output
+1. View only yields JSON
+1. Routes pass work to Controller
