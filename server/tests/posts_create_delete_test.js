@@ -1,4 +1,4 @@
-var app = require(__dirname + '/../index.js'),
+var app  = require(__dirname + '/../app.js'),
   port = 8888,
   assert = require('assert'),
   request = require('supertest');

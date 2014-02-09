@@ -1,7 +1,8 @@
 /**
-  @module db_adapter
+  @module app
+  @submodule adapter
 
-  Abstract Interface to use for db adapters
+  Abstract Interface to use for db adapters and as proxy methods for a model object
 **/
 
 /**
@@ -83,7 +84,7 @@ Adapter.prototype.findAll = function (type, callback) {
   @method createRecord
   @param {String} type
   @param {Object} record
-  @param {Function} callback(err, results) - Callback args: Error, Results Array
+  @param {Function} callback(err, result) - Callback args: Error, JSON Result 
 **/
 Adapter.prototype.createRecord = function (type, record, callback) {
   return new NotImplementedError();
@@ -94,7 +95,7 @@ Adapter.prototype.createRecord = function (type, record, callback) {
   @param {String} type
   @param {String) id
   @param {Object} record
-  @param {Function} callback(err, results) - Callback args: Error, Results Array
+  @param {Function} callback(err, result) - Callback args: Error, JSON Result
 **/
 Adapter.prototype.updateRecord = function (type, id, record, callback) {
   return new NotImplementedError();
@@ -104,7 +105,7 @@ Adapter.prototype.updateRecord = function (type, id, record, callback) {
   @method deleteRecord
   @param {String} type
   @param {Object} record
-  @param {Function} callback(err, results) - Callback args: Error, Results Array
+  @param {Function} callback(err, result) - Callback args: Error, (optional) JSON Result
 **/
 Adapter.prototype.deleteRecord = function (type, record, callback) {
   return new NotImplementedError();

@@ -9,12 +9,12 @@ seed:
 	@./bin/seed_blog_db.js
 
 lint:
-	@jshint lib/* index.js tests/*
+	@jshint lib/* app.js tests/*
 
-test: lint
+test: lint seed
 	@mocha --reporter spec tests/*
 
 server:
-	@DEBUG=* node index.js
+	@DEBUG=* node app.js
 
 .PHONY: install db lint test server

@@ -1,10 +1,9 @@
-var app = require(__dirname + '/../index.js'),
+var app  = require(__dirname + '/../app.js'),
   port = 8888,
   assert = require('assert'),
   request = require('supertest');
 
 describe('Posts', function () {
-  var originalPayload, postId;
 
   before(function (done) {
     this.server = app.listen(port, function (err, result) {
@@ -16,36 +15,22 @@ describe('Posts', function () {
     });
   });
 
-  after(function (done) {
-    var server = this.server;
-    if (originalPayload && postId) {
-      request(app)
-        .put('/posts/'+postId)
-        .send(JSON.parse(originalPayload))
-        .end(function (err, res) {
-          if (err) done(err);
-          server.close();
-          done();
-        });
-    } else {
-      server.close();
-    }
+  after(function () {
+    this.server.close();
   });
 
   describe('PUT responses:', function () {
 
     describe('/posts/:id', function () {
 
-      it('updates a "post" record, title changed', function (done) {
+      it('updates a "post" record, excerpt changed', function (done) {
         request(app)
           .get('/posts?order=desc')
           .end(function (err, res) {
             if (err) return done(err);
             var id = res.body.posts[0].id;
-            postId = id;
             var payload = { post: res.body.posts[0] };
-            originalPayload = JSON.stringify(payload);
-            payload.post.title += " updated";
+            payload.post.excerpt += " [updatable]";
             delete payload.post.id;
             request(app)
               .put('/posts/'+id)
@@ -53,8 +38,8 @@ describe('Posts', function () {
               .expect(200)
               .expect(function (res) {
                 var post = res.body.posts[0];
-                if (!post || post.title.match(/updated/) === null) {
-                  throw new Error('post not updated');
+                if (!post || post.excerpt.match(/\[updatable\]/) === null) {
+                  throw new Error('post not updatable');
                 }
               })
               .end(handleDone(done));
