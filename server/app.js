@@ -34,14 +34,11 @@ app.configure(function () {
 });
 
 
-// used for test to confirm simple response
-app.get('/ping', cors(options), function (req, res) {
-  res.send('pong');
-});
-
 /**
   Load application routes
 **/
+require('./routes/ping')(app, cors(options));
+
 require('./routes/posts')(app, cors(options));
 
 

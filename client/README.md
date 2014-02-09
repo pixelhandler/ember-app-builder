@@ -78,8 +78,8 @@ vendor file for Ember and Ember Data.
 ## Testing
 
 1. Start db, see Makefile in server directory
-1. Start API server, (see ^)
-1. Start server for client app
+1. Start API server, (see ^), If needed, seed the db first
+1. `make test` launches testem and browsers to test in dev
 
 
 ## Vim tools

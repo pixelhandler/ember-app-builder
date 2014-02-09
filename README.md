@@ -1,15 +1,43 @@
 # Ember App Builder
 
+Project goals:
+
+* Author Web applications with simple tooling
+* Minimistic approach to API development
+  * Map routes to db adapter, send JSON response
+* End-to-end integration testing
+  * Test API request/response in server app
+  * Seed database for testing
+* Use modules for developing on client and server
+* Ember Test helpers used for integration testing
+  * Connect to live api during tests
+* Tasks simply listed in Makefile
+  * E.g. `make db`, `make server`, `make test`
+  * Automate tasks w/ shell scripts, Bash / Javascript (node)
+    * `make canary` update and replace Ember / Ember Data  
+* Code quality encorced w/ jshint, `make lint`
+* Client application build tools
+  * Compile Handlebars templates
+* Manage dependencies using bower.json and package.json files
+  * Shell script copies source from bower dir to vendor
+  * Option to overwrite w/ canary versions using shell script
+* Vim tooing, Use portkey.json for generators and [ember.vim](https://github.com/dsawardekar/ember.vim)
+
+Sample app:
+
+Bloggr app (by Tilde.io) is setup in the [client](client) directory. The supporting `post` (resource) routes are in the [server/routes](server/routes) directory. Seed database with shell script and a module [server/seeds/posts.js](server/seeds/posts.js)
+
+* Server runs on port 8888, client on 8000 (using CORS)
 
 ## Directories
 
 ### [client](client)
 
-* See: [client/README.md](client/README.md)
+* See: [client/README.md](client/README.md), [client/package.json](client/package.json),  [client/bower.json](client/bower.json)
 
 ### [server](server)
 
-* See: [server/package.json](server/package.json)
+* See: [server/README.md](server/README.md), [server/package.json](server/package.json)
 
 
 ## Setup
