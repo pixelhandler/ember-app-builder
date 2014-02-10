@@ -1,0 +1,97 @@
+/* Styles */
+
+
+/*
+  Background Colors
+*/
+.bg-lt-gray {
+  background-color: #ccc;
+}
+.bg-dk-gray {
+  background-color: #444
+}
+
+/*
+  Text Colors
+*/
+.txt-white,
+.txt-white a, 
+.txt-white a:active,
+.txt-white a:hover {
+  color: white;
+}
+.txt-lt-gray,
+.txt-lt-gray a, 
+.txt-lt-gray a:active,
+.txt-lt-gray a:hover {
+  color: #ccc;
+}
+.txt-dk-gray,
+.txt-dk-gray a, 
+.txt-dk-gray a:active,
+.txt-dk-gray a:hover {
+  color: #444;
+}
+
+/* Elements */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: 'PT Serif', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+h1, h2, h3 {
+  font-family: 'PT Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+h1, h2 {
+  margin: 0 0 1em 0;
+}
+h1 {
+  font-size: 3.6rem;
+}
+h2 {
+  font-size: 2.4rem;
+}
+h3 {
+  font-size: 1.8rem;
+}
+p {
+  margin: 0 0 1em 0;
+}
+
+header,
+footer {
+  margin: 0;
+  padding: 0;
+}
+
+/* Components */
+
+.Logo {
+  font-size: 2.4rem;
+}
+.Logo-image {
+  float: left;
+}
+.Logo-text {
+  margin: 0 0 0 1rem;
+}
