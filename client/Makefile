@@ -18,6 +18,7 @@ install:
 	@npm install
 	@npm install grunt-blanket-qunit --save-dev
 	@bower install
+	@bin/patches.sh
 	@bin/vendor.sh
 	@bin/canary.sh
 
