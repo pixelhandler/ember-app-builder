@@ -8,6 +8,11 @@ PROD_DIR=$VENDOR_DIR"/production"
 
 rm -fr $DEV_DIR/*canary*
 
+if [ ! -d $VENDOR_DIR ]; then
+  echo "Creating vendor directory"
+  mkdir $VENDOR_DIR
+fi
+
 function copy_vendor_file() {
   # $1 - filename, $2 - src directory, $3 - vendor directory
   SRC_FILE=$2"/"$1

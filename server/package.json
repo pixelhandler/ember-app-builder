@@ -14,6 +14,7 @@
   "dependencies": {
     "express": "~3.4.2",
     "cors": "*",
+    "rethinkdb": "*",
     "debug": "*",
     "inflect": "~0.3.0"
   },

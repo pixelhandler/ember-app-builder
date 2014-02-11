@@ -1,11 +1,16 @@
-install:
+install: brew
 	@npm install
+
+brew:
+	@./bin/install_rethinkdb.sh
 
 db:
 	@rethinkdb
 
-seed:
+setup:
 	@./bin/create_blog_db.js
+
+seed: setup
 	@./bin/seed_blog_db.js
 
 lint:

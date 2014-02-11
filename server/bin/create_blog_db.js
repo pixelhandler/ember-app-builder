@@ -11,7 +11,9 @@ r.connect({ host: 'localhost', port: 28015}, function (err, conn) {
   async.series([
     // drop blog db
     function (callback) {
-      r.dbDrop(name).run(conn, callback);
+      r.dbDrop(name).run(conn, function (err, result) {
+        callback();
+      });
     },
     // create blog dB
     function (callback) {
