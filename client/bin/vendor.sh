@@ -13,6 +13,16 @@ if [ ! -d $VENDOR_DIR ]; then
   mkdir $VENDOR_DIR
 fi
 
+if [ ! -d $DEV_DIR ]; then
+  echo "Creating vendor/development directory"
+  mkdir -p $DEV_DIR
+fi
+
+if [ ! -d $PROD_DIR ]; then
+  echo "Creating vendor/production directory"
+  mkdir -p $PROD_DIR
+fi
+
 function copy_vendor_file() {
   # $1 - filename, $2 - src directory, $3 - vendor directory
   SRC_FILE=$2"/"$1
