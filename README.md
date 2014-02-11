@@ -45,8 +45,6 @@ Bloggr app (by Tilde.io) is setup in the [client](client) directory. The support
 * `cd client && npm install && bower install`
 * `cd server && npm install`
 
-<iframe src="//player.vimeo.com/video/86430034" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/86430034">Install tasks for ember-app-builder project</a> from <a href="http://vimeo.com/user14550887">Bill Heaton</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-
 ## Tasks / Commands
 
 ### Client-side
@@ -60,3 +58,9 @@ Bloggr app (by Tilde.io) is setup in the [client](client) directory. The support
 * See the [server/Makefile](server/Makefile)
 
 `cd server`, `make db`, `make server`
+
+## Screencasts
+
+<iframe src="//player.vimeo.com/video/86430034" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/86430034">Install tasks for ember-app-builder project</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
+<iframe src="//player.vimeo.com/video/86432032" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/86432032">Overview of end-to-end (integration) testing with ember-app-builder</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
