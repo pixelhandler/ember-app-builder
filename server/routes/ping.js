@@ -16,7 +16,7 @@ module.exports = function(app, options) {
     Route: (verb) GET /ping
     - Used for test to confirm simple response
   **/
-  app.get('/ping', cors(options), function (req, res) {
+  app.get('/ping', options, function (req, res) {
     res.send('pong');
   });
 
