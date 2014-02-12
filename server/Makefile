@@ -17,7 +17,7 @@ lint:
 	@jshint lib/* app.js tests/*
 
 test: lint seed
-	@mocha --reporter spec tests/*
+	@./node_modules/.bin/mocha --reporter spec tests/*
 
 server:
 	@DEBUG=* node app.js
