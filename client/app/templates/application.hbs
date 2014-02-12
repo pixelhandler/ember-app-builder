@@ -1,11 +1,33 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    {{#link-to 'index' class='brand'}}Bloggr{{/link-to}}
-    <ul class="nav">
-      <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
-      <li>{{#link-to 'about'}}About{{/link-to}}</li>
-    </ul>
+<header class="Header Header--cozy u-ltGrayBkg">
+  <div class="Box u-blueTxt u-cf">
+    {{#link-to 'index'}}
+      <img class="Header-logo" src="http://pixelhandler.com/images/pixelhandler-logo.png">
+    {{/link-to}}
+    <div class="Header-title">
+      {{#link-to 'index'}}Pixelhandler{{/link-to}}
+    </div>
+    <div class="Header-subTitle">
+      Pushin&apos; &amp; pullin&apos; pixels on the web
+    </div>
   </div>
+</header>
+
+<div class="Blog-body">
+  <main class="Blog-content">
+    <article class="Box u-dkGrayTxt">
+      {{outlet}}
+    </article>
+  </main>
+
+  <nav class="Blog-nav u-yellowTxt">
+    <ul class="Blog-nav-list">
+      <li class="Blog-nav-list-item">{{#link-to 'index'}}Blog{{/link-to}}</li>
+      <li class="Blog-nav-list-item">{{#link-to 'posts'}}Archive{{/link-to}}</li>
+      <li class="Blog-nav-list-item">{{#link-to 'about'}}About{{/link-to}}</li>
+    </ul>
+  </nav>
 </div>
 
-{{outlet}}
+<footer class="Footer u-blueTxt u-textCenter u-mdGrayBkg">
+  <p class="Footer-credits">The End.</p>
+</footer>

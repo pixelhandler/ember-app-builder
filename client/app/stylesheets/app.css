@@ -1,4 +1,19 @@
-/* Put your CSS here */
-html, body {
-    margin: 20px;
-}
+/*
+  Naming Conventions
+
+  See: https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md
+  - u-utilityName
+  - ComponentName
+  - ComponentName--modifierName
+  - ComponentName-descendantName
+  - ComponentName.is-stateOfComponent
+  - v1-*
+  - js-someName
+*/
+
+/*
+Build
+ - Components
+ - Elements
+ - Utilities
+*/

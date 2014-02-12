@@ -1,0 +1,53 @@
+/* Elements */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: 'PT Serif', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'PT Sans', sans-serif;
+  font-style: normal;
+  -webkit-font-kerning: normal;
+}
+h1, h2 {
+  margin: 0 0 1rem 0;
+  font-weight: 400;
+}
+h1 {
+  font-size: 2.4em;
+}
+h2 {
+  font-size: 1.8em;
+}
+h3 {
+  font-size: 1.8em;
+  font-weight: 700;
+}
+p {
+  margin: 0 0 1em 0;
+  line-height: 1.8em;
+}
+
+header,
+footer {
+  margin: 0;
+  padding: 0;
+}
+
+a, a:link, a:hover, a:visited, a:active {
+  text-decoration: none;
+}

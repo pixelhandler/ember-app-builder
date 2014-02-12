@@ -1,0 +1,98 @@
+/* Utilities */
+
+.u-textCenter {
+  text-align: center!important;
+}
+
+.u-textLeft {
+  text-align: left!important;
+}
+
+.u-ltGrayBkg {
+  background-color: #F5F4F1;
+}
+
+.u-mdGrayBkg {
+  background-color: #E7E4DC;
+}
+
+.u-whiteTxt,
+.u-whiteTxt a,
+.u-whiteTxt a:active,
+.u-whiteTxt a:hover {
+  color: white;
+}
+.u-whiteTxt a {
+  border-bottom: 1px dashed rgba(255, 255, 255,.5);
+}
+
+.u-ltGrayText,
+.u-ltGrayText a,
+.u-ltGrayText a:active,
+.u-ltGrayText a:hover {
+  color: #ccc;
+}
+
+.u-dkGrayTxt,
+.u-dkGrayTxt a,
+.u-dkGrayTxt a:active,
+.u-dkGrayTxt a:hover {
+  color: #546578;
+}
+
+.u-yellowTxt,
+.u-yellowTxt a,
+.u-yellowTxt a:active,
+.u-yellowTxt a:hover {
+  color: #f39f2b;
+}
+.u-yellowTxt a {
+  border-bottom: 1px dashed #f39f2b;
+}
+
+.u-greenTxt,
+.u-greenTxt a,
+.u-greenTxt a:active,
+.u-greenTxt a:hover {
+  color: #39af4c;
+}
+.u-greenTxt a {
+  border-bottom: 1px dashed #39af4c;
+}
+
+.u-blueTxt,
+.u-blueTxt a,
+.u-blueTxt a:active,
+.u-blueTxt a:hover {
+  color: #0082be;
+}
+.u-blueTxt a {
+  border-bottom: 1px dashed #0082be;
+}
+
+.u-redTxt,
+.u-redTxt a,
+.u-redTxt a:active,
+.u-redTxt a:hover {
+  color: #e81e25;
+}
+.u-redTxt a {
+  border-bottom: 1px dashed #e81e25;
+}
+
+.u-rounded {
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  border-radius: 1rem;
+}
+
+
+/* clear fix */
+.u-cf:before,
+.u-cf:after {
+  content: " ";
+  display: table;
+}
+.u-cf:after {
+  clear: both;
+}
