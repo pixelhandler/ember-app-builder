@@ -29,12 +29,15 @@
   -ms-flex: 1;
   flex: 1;
 
-  padding: 0 1rem;
+  padding: 0;
 }
 
 .Blog-content {
-  margin: 1.5em 0;
-  padding: 2rem 2rem 6rem 2rem;
+  margin: 0;
+  padding-top: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
 }
 
 .Blog-nav, .Blog-aside {
@@ -146,9 +149,12 @@
   }
 
   .Blog-content {
+    min-width: 70%;
     margin: 0;
-    padding-left: 4rem;
+    padding-top: 2rem;
     padding-right: 3rem;
+    padding-bottom: 6rem;
+    padding-left: 4rem;
   }
 
   .Blog-nav, .Blog-aside {
