@@ -4,32 +4,33 @@
   <meta charset="UTF-8">
   <title>Flat Layout</title>
   <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
-  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="fonts/stylesheet.css">
   <link rel="stylesheet" href="blog.css">
   <script src="script.js"></script>
 </head>
 <body>
 
-<body class="Blog">
-  <header class="Header Header--cozy u-ltGrayBkg">
-    <div class="Box u-blueTxt u-cf">
+<body class="Blog u-serif">
+  <header class="Header Header--cozy u-sansSerif u-blueBotBorder u-whiteBkg">
+    <div class="Box u-cf">
       <img class="Header-logo" src="http://pixelhandler.com/images/pixelhandler-logo.png">
-      <div class="Header-title">Pixelhandler</div>
-      <div class="Header-subTitle">Pushin&apos; &amp; pullin&apos; pixels on the web</div>
+      <div class="Header-title u-blueTxt">Pixelhandler</div>
+      <div class="Header-subTitle u-grayText">Pushin&apos; &amp; pullin&apos; pixels on the web</div>
     </div>
   </header>
 
-  <div class="Blog-body">
-    <main class="Blog-content">
-      <article class="Box u-dkGrayTxt">
-        <h1 class="u-blueTxt">Main Content</h1>
-        <p><strong class="u-blueTxt">I'm first in the source order.</strong></p>
+  <div class="Blog-body u-grayBkg">
+    <main class="Blog-content u-blackTxt u-whiteBkg u-grayLtBorder">
+      <article class="Box">
+        <h1>Main Content</h1>
+        <p><strong>I'm first in the source order.</strong></p>
         <p>The key to victory is discipline, and that means a well made bed. You will practice until you can make your bed in your sleep. Fry, we have a crate to deliver. Hey, guess what you're accessories to.</p>
         <p>I'll get my kit! That's not soon enough! Oh, all right, I am. But if anything happens to me, tell them I died robbing some old man.</p>
+        <a class="button" href="#">Read on →</a>
       </article>
     </main>
 
-    <nav class="Blog-nav u-yellowTxt">
+    <nav class="Blog-nav u-blueTxt u-ltBlueBkg u-grayRtBorder u-whiteLtBorder u-sansSerif">
       <ul class="Blog-nav-list">
         <li class="Blog-nav-list-item"><a href="#">Home</a></li>
         <li class="Blog-nav-list-item"><a href="#">About</a></li>
@@ -39,7 +40,7 @@
     </nav>
   </div>
 
-  <footer class="Footer u-blueTxt u-textCenter u-mdGrayBkg">
+  <footer class="Footer u-sansSerif u-whiteTxt u-textCenter u-blueBkg u-whiteTopBorder">
     <p class="Footer-credits">The End.</p>
   </footer>
 </body>
