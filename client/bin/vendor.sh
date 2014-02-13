@@ -62,6 +62,9 @@ src=$BOWER_DIR"/momentjs"
 copy_vendor_file moment.js $src $DEV_DIR
 copy_vendor_file moment.min.js $src"/min" $PROD_DIR
 
+src=$BOWER_DIR"/normalize-css"
+copy_vendor_file normalize.css $src $VENDOR_DIR
+
 unset CLIENT_DIR
 unset VENDOR_DIR
 unset BOWER_DIR

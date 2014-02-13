@@ -1,12 +1,12 @@
 {
-  "name": "App",
-  "summary": "",
-  "description": "App",
-  "homepage": "",
+  "name": "pixelhandler-blog",
+  "summary": "Bill Heaton's Blog website",
+  "description": "Pixelhandler.com - Pushin' & pullin' pixels on the web",
+  "homepage": "http://pixelhandler.com",
   "author": [
-    ""
+    "Bill Heaton"
   ],
-  "version": "0.0.1",
+  "version": "0.1",
   "repository": {
     "type": "git",
     "url": ""

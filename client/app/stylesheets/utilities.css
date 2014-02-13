@@ -1,19 +1,26 @@
 /* Utilities */
 
-.u-textCenter {
-  text-align: center!important;
+/* Text */
+
+.u-serif {
+  font-family: 'Georgia', serif;
+  font-style: normal;
+  font-weight: normal;
 }
 
 .u-textLeft {
   text-align: left!important;
 }
 
-.u-ltGrayBkg {
-  background-color: #F5F4F1;
+.u-sansSerif {
+  font-family: 'outageregular', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-kerning: normal;
 }
 
-.u-mdGrayBkg {
-  background-color: #E7E4DC;
+.u-textCenter {
+  text-align: center!important;
 }
 
 .u-whiteTxt,
@@ -23,21 +30,27 @@
   color: white;
 }
 .u-whiteTxt a {
-  border-bottom: 1px dashed rgba(255, 255, 255,.5);
+  border-bottom: 1px dashed rgba(255, 255, 255, .5);
 }
 
-.u-ltGrayText,
-.u-ltGrayText a,
-.u-ltGrayText a:active,
-.u-ltGrayText a:hover {
-  color: #ccc;
+.u-blackTxt,
+.u-blackTxt a,
+.u-blackTxt a:active,
+.u-blackTxt a:hover {
+  color: black;
+}
+.u-blackTxt a {
+  border-bottom: 1px dashed rgba(0, 0, 0, .5);
 }
 
-.u-dkGrayTxt,
-.u-dkGrayTxt a,
-.u-dkGrayTxt a:active,
-.u-dkGrayTxt a:hover {
-  color: #546578;
+.u-grayText,
+.u-grayText a,
+.u-grayText a:active,
+.u-grayText a:hover {
+  color: #d2d2d2;
+}
+.u-grayText a {
+  border-bottom: 1px dashed #d2d2d2;
 }
 
 .u-yellowTxt,
@@ -80,14 +93,84 @@
   border-bottom: 1px dashed #e81e25;
 }
 
+/* Borders */
+
+.u-blueBotBorder {
+  border-bottom: 4px dotted #0082be;
+}
+
+.u-whiteTopBorder {
+  border-top: 4px dotted #fff;
+}
+
+.u-whiteLtBorder {
+  border-left: 4px dotted #fff;
+}
+
+.u-grayLtBorder {
+  border-left: 4px dotted #d2d2d2;
+}
+
+.u-grayRtBorder {
+  border-right: 4px dotted #d2d2d2;
+}
+
+/* Backgrounds */
+
+.u-grayBkg {
+  background-color: #d2d2d2;
+}
+
+.u-ltBlueBkg {
+  background-color: #E3EAF1;
+}
+
+.u-blueBkg {
+  background-color: #0082be;
+}
+
+.u-whiteBkg {
+  background-color: #ffffff;
+}
+
+/* Boxes */
+
 .u-rounded {
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
   border-radius: 1rem;
 }
 
+/* Button */
 
-/* clear fix */
+.button {
+  background: #d2d2d2;
+  display: inline-block;
+  padding: .4em .8em;
+  margin-right: .5em;
+  text-decoration: none;
+  color: #444444;
+  border: none;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  border-radius: 1rem;
+}
+a.button {
+  border: none;
+}
+
+.button:hover {
+  background: #0082be;
+  text-shadow: none;
+  color: #ffffff!important;
+}
+
+/* Clear fix */
 .u-cf:before,
 .u-cf:after {
   content: " ";
