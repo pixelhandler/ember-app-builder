@@ -31,9 +31,8 @@ exports.config = {
     },
     stylesheets: {
       joinTo: {
-        'normalize.css': /^vendor\/normalize\.css$/,
-        'app.css': /^app\/stylesheets\/(app|components|elements|utilities)\.css$/,
-        'fonts.css': /^app\/stylesheets\/fonts\.css$/,
+        'normalize.css': /^app\/stylesheets\/normalize\.css$/,
+        'app.css': /^app\/stylesheets\/(app|components|elements|utilities|fonts)\.css$/,
       }
     },
     templates: {

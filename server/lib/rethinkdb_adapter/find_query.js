@@ -83,6 +83,22 @@ function queryFactory(query) {
   return query;
 }
 
+/* TODO confirm date sorting, dates cast to strings?
+var isSortByDate = (payload.meta.sortBy === 'date');
+var isDescOrder = (payload.meta.order === 'desc');
+if (isSortByDate) {
+  payload.posts.sort(function (a, b) {
+    var order = 0; 
+    if (isDescOrder) {
+      order = (b > a) ? 1 : -1; 
+    } else {
+      order = (b > a) ? 1 : -1; 
+    }
+    return order;
+  });
+}
+*/
+
 /**
   Async success / error handlers
 **/

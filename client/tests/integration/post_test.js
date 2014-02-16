@@ -9,18 +9,18 @@ module('Post', {
 });
 
 var postAttrs = {
-  title: '.span9 h1',
-  author: '.span9 h2',
-  date: '.span9 .muted',
-  excerpt: '.span9 .intro',
-  body: '.span9 .below-the-fold'
+  title: '.Blog-content h1',
+  author: '.Blog-content .author',
+  date: '.Blog-content .date',
+  excerpt: '.Blog-content .intro',
+  body: '.Blog-content .below-the-fold'
 };
 
 test('First Post', function () {
   expect(9);
 
   visit('/posts').then(function () {
-    var postLink = 'table tbody tr td a:eq(0)';
+    var postLink = '.Blog-nav-list:eq(0) .Blog-nav-list-item:eq(0) a';
 
     visit(hyperlink(postLink)).then(function () {
       for (var attr in postAttrs) {
@@ -53,7 +53,7 @@ test('Second Post', function () {
   expect(9);
 
   visit('/posts').then(function () {
-    var postLink = 'table tbody tr td a:eq(1)';
+    var postLink = '.Blog-nav-list:eq(0) .Blog-nav-list-item:eq(1) a';
 
     click(postLink).then(function () {
       for (var attr in postAttrs) {

@@ -23,7 +23,7 @@ if [ ! -d $PROD_DIR ]; then
   mkdir -p $PROD_DIR
 fi
 
-function copy_vendor_file() {
+function copy_file() {
   # $1 - filename, $2 - src directory, $3 - vendor directory
   SRC_FILE=$2"/"$1
   DEST_FILE=$3"/"$1
@@ -39,31 +39,28 @@ function copy_vendor_file() {
 }
 
 src=$BOWER_DIR"/jquery"
-copy_vendor_file jquery.js $src $DEV_DIR
-copy_vendor_file jquery.min.js $src $PROD_DIR
+copy_file jquery.js $src $DEV_DIR
+copy_file jquery.min.js $src $PROD_DIR
 
 src=$BOWER_DIR"/handlebars"
-copy_vendor_file handlebars.js $src $DEV_DIR
-copy_vendor_file handlebars.min.js $src $PROD_DIR
+copy_file handlebars.js $src $DEV_DIR
+copy_file handlebars.min.js $src $PROD_DIR
 
 src=$BOWER_DIR"/ember"
-copy_vendor_file ember.js $src $DEV_DIR
-copy_vendor_file ember.prod.js $src $PROD_DIR
+copy_file ember.js $src $DEV_DIR
+copy_file ember.prod.js $src $PROD_DIR
 
 src=$BOWER_DIR"/ember-data"
-copy_vendor_file ember-data.js $src $DEV_DIR
-copy_vendor_file ember-data.prod.js $src $PROD_DIR
+copy_file ember-data.js $src $DEV_DIR
+copy_file ember-data.prod.js $src $PROD_DIR
 
 src=$BOWER_DIR"/showdown"
-copy_vendor_file showdown.js $src"/src" $DEV_DIR
-copy_vendor_file showdown.js $src"/compressed" $PROD_DIR
+copy_file showdown.js $src"/src" $DEV_DIR
+copy_file showdown.js $src"/compressed" $PROD_DIR
 
 src=$BOWER_DIR"/momentjs"
-copy_vendor_file moment.js $src $DEV_DIR
-copy_vendor_file moment.min.js $src"/min" $PROD_DIR
-
-src=$BOWER_DIR"/normalize-css"
-copy_vendor_file normalize.css $src $VENDOR_DIR
+copy_file moment.js $src $DEV_DIR
+copy_file moment.min.js $src"/min" $PROD_DIR
 
 unset CLIENT_DIR
 unset VENDOR_DIR
@@ -71,4 +68,4 @@ unset BOWER_DIR
 unset DEV_DIR
 unset PROD_DIR
 unset src
-unset copy_vendor_file
+unset copy_file
