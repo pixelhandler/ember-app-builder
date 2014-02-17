@@ -63,7 +63,19 @@
 }
 
 .Blog-excerpt {}
-.Blog-archive {}
+
+.Blog-list {}
+
+.Blog-list-date {
+  float: left;
+  width: 25%;
+}
+
+.Blog-list-link {
+  margin-left: 25%;
+  margin-bottom: 1em;
+}
+
 
 .Header {
   padding: 1em .5em .5em 1em;

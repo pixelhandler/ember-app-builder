@@ -1,6 +1,9 @@
 <h4>Posts Archive</h4>
-<ul class="Blog-nav-list">
+<dl class="Blog-list">
   {{#each model}}
-    <li class="Blog-nav-list-item">{{#link-to 'post' this}}{{title}}{{/link-to}}</li>
+    <dt class="Blog-list-date">{{format-date date}}</dt>
+    <dd class="Blog-list-link u-cf">
+      {{#link-to 'post' this}}{{title}}{{/link-to}}
+    </dd>
   {{/each}}
-</ul>
+</dl>

@@ -1,10 +1,10 @@
-{{#each post in controller}}
+{{#each model}}
   <div class="Blog-excerpt">
-    <h3 class="Blog-excerpt-title u-yellowTxt">{{#link-to 'post' post}}{{post.title}}{{/link-to}}</h3>
+    <h3 class="Blog-excerpt-title u-yellowTxt">{{#link-to 'post' this}}{{title}}{{/link-to}}</h3>
     <section class="Blog-excerpt-summary">
-      {{post.excerpt}}
+      {{excerpt}}
     </section>
-    {{#link-to "post" post class="u-button"}}Read on →{{/link-to}}
+    {{#link-to "post" this class="u-button"}}Read on →{{/link-to}}
   </div>
 {{/each}}
 {{outlet}}

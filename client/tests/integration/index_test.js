@@ -6,14 +6,7 @@ module('Index', {
   }
 });
 
-//test('Index redirects', function () {
-  //expect(1);
-  //visit('/').then(function () {
-    //equal(path(), 'posts.index', 'Redirects to /#/posts');
-  //});
-//});
-
-var excerpt = '.Blog-excerpt';
+var excerpt = '.Blog-content .Blog-excerpt';
 
 test('Index template, lists posts', function () {
   expect(5);
@@ -25,4 +18,3 @@ test('Index template, lists posts', function () {
     ok(exists(excerpt + ' .u-button'), 'excerpt button exists');
   });
 });
-
