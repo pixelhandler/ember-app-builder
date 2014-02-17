@@ -6,12 +6,17 @@ exports.startServer = function (port, publicPath, log) {
   port = port || process.env.CLIENT_PORT || 8000;
   publicPath = publicPath || './public';
 
-  var file = new staticServer.Server(publicPath);
+  var fileServer = new staticServer.Server(publicPath);
 
   createServer(function (request, response) {
 
     request.addListener('end', function () {
-      file.serve(request, response);
+      fileServer.serve(request, response, function (err, res) {
+        if (err && (err.status === 404)) { // Not found
+          fileServer.serveFile('/index.html', 200, {}, request, response);
+        }
+      });
+
     }).resume();
 
   }).listen(port);
