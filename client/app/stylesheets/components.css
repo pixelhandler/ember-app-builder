@@ -76,6 +76,8 @@
   margin-bottom: 1em;
 }
 
+.Blog-about {}
+
 
 .Header {
   padding: 1em .5em .5em 1em;
@@ -104,7 +106,7 @@
   float: left;
 }
 
-.Header .u-blueTxt a {
+.Header .u-whiteTxt a {
   border-bottom: none;
 }
 
@@ -160,7 +162,7 @@
     flex: 1;
     -ms-flex-preferred-size: auto;
 
-    padding: 0 3rem;
+    padding: 0;
   }
 
   .Blog-content {
@@ -194,7 +196,7 @@
   }
 
   .Header {
-    padding: 1rem 4.75rem .5rem 3rem;
+    padding: 1rem 1rem .5rem 4rem;
   }
 
   .Header--cozy, .Header--cozy .Header-titles {

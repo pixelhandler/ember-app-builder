@@ -53,6 +53,16 @@
   border-bottom: 1px dashed #d2d2d2;
 }
 
+.u-medGrayText,
+.u-medGrayText a,
+.u-medGrayText a:active,
+.u-medGrayText a:hover {
+  color: #777777;
+}
+.u-medGrayText a {
+  border-bottom: 1px dashed #777777;
+}
+
 .u-yellowTxt,
 .u-yellowTxt a,
 .u-yellowTxt a:active,
@@ -95,27 +105,32 @@
 
 /* Borders */
 
-.u-blueBotBorder {
-  border-bottom: 4px dotted #0082be;
+.u-offWhiteLtBorder {
+  border-left: 2px dotted #eeeeee;
 }
 
-.u-whiteTopBorder {
-  border-top: 4px dotted #fff;
-}
-
-.u-whiteLtBorder {
-  border-left: 4px dotted #fff;
+.u-grayTopBorder {
+  border-top: 2px dotted #d2d2d2;
 }
 
 .u-grayLtBorder {
-  border-left: 4px dotted #d2d2d2;
+  border-left: 2px dotted #d2d2d2;
 }
 
 .u-grayRtBorder {
-  border-right: 4px dotted #d2d2d2;
+  border-right: 2px dotted #d2d2d2;
 }
 
+.u-grayBotBorder {
+  border-bottom: 2px dotted #d2d2d2;
+}
+
+
 /* Backgrounds */
+
+.u-offWhiteBkg {
+  background-color: #eeeeee;
+}
 
 .u-grayBkg {
   background-color: #d2d2d2;
@@ -131,6 +146,10 @@
 
 .u-whiteBkg {
   background-color: #ffffff;
+}
+
+.u-blackBkg {
+  background-color: #000000;
 }
 
 /* Boxes */

@@ -13,11 +13,14 @@ test('Route /about', function () {
   });
 });
 
+var about = '.Blog-about';
+
 test('About template', function () {
-  expect(3);
+  expect(4);
   visit('/about').then(function () {
-    ok(exists('.about'), 'About template text exists.');
-    ok(hasText('.about:eq(0)', 'hacking on open source'), 'hacking text present');
-    ok(hasText('.about:eq(1)', 'JavaScript framework'), 'framework text present');
+    ok(exists(about), 'About template text exists.');
+    ok(hasText(about, 'pixelhandler'), '"pixelhandler" text present');
+    ok(hasText(about, 'Bill Heaton'), '"Bill Heaton" text present');
+    ok(hasText(about, '1-714-512-2215'), '"1-714-512-2215" text present');
   });
 });

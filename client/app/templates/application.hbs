@@ -1,30 +1,30 @@
-<header class="Header Header--cozy u-sansSerif u-blueBotBorder u-whiteBkg">
+<header class="Header Header--cozy u-sansSerif u-grayBotBorder u-blackBkg">
   <div class="Box u-cf">
     {{#link-to 'index'}}
       <img class="Header-logo" src="http://pixelhandler.com/images/pixelhandler-logo.png">
     {{/link-to}}
-    <div class="Header-title u-blueTxt">
+    <div class="Header-title u-whiteTxt">
       {{#link-to 'index'}}Pixelhandler{{/link-to}}
     </div>
-    <div class="Header-subTitle u-grayText">
+    <div class="Header-subTitle u-medGrayText">
       Pushin&apos; &amp; pullin&apos; pixels on the web
     </div>
   </div>
 </header>
 
-<div class="Blog-body u-grayBkg">
-  <main class="Blog-content u-blackTxt u-whiteBkg u-grayLtBorder">
+<div class="Blog-body">
+  <main class="Blog-content u-blackTxt u-offWhiteBkg">
     <article class="Box">
       {{outlet}}
     </article>
   </main>
 
-  <nav class="Blog-nav u-blueTxt u-ltBlueBkg u-grayRtBorder u-whiteLtBorder u-sansSerif">
+  <nav class="Blog-nav u-blackTxt u-grayBkg u-offWhiteLtBorder u-sansSerif">
     {{render "recent" this}}
     {{partial "links"}}
   </nav>
 </div>
 
-<footer class="Footer u-sansSerif u-whiteTxt u-textCenter u-blueBkg u-whiteTopBorder">
+<footer class="Footer u-sansSerif u-medGrayText u-textCenter u-blackBkg u-grayTopBorder">
   <p class="Footer-credits">The End. [Personal blog of Bill Heaton]</p>
 </footer>
