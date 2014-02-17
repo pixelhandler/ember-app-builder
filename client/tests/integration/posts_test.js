@@ -19,3 +19,15 @@ test('Posts list', function () {
     equal(text(links + ':eq(1)'), 'The Parley Letter', '2nd post title and author listed');
   });
 });
+
+var excerpt = '.Blog-excerpt';
+
+test('Posts Index template', function () {
+  expect(4);
+  visit('/posts').then(function () {
+    ok(exists(excerpt), 'Index template has excerpt(s).');
+    ok(exists(excerpt + ' .title'), 'excerpt title exists');
+    ok(exists(excerpt + ' .title a'), 'excerpt title has anchor');
+    ok(exists(excerpt + ' .summary'), 'excerpt summary exists');
+  });
+});

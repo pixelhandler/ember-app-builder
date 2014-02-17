@@ -1,1 +1,8 @@
-<p class="text-warning">Please select a post</p>
+{{#each post in controller}}
+  <div class="Blog-excerpt">
+    <h3 class="title u-yellowTxt">{{#link-to 'post' post}}{{post.title}}{{/link-to}}</h3>
+    <section class="summary">
+      {{post.excerpt}}
+    </section>
+  </div>
+{{/each}}
