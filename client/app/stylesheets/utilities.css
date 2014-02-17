@@ -143,11 +143,12 @@
 
 /* Button */
 
-.button {
+.u-button {
   background: #d2d2d2;
   display: inline-block;
   padding: .4em .8em;
   margin-right: .5em;
+  margin-top: .5em;
   text-decoration: none;
   color: #444444;
   border: none;
@@ -160,11 +161,11 @@
   -moz-border-radius: 1rem;
   border-radius: 1rem;
 }
-a.button {
+a.u-button {
   border: none;
 }
 
-.button:hover {
+.u-button:hover {
   background: #0082be;
   text-shadow: none;
   color: #ffffff!important;

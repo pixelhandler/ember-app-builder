@@ -20,14 +20,15 @@ test('Posts list', function () {
   });
 });
 
-var excerpt = '.Blog-excerpt';
+//var excerpt = '.Blog-excerpt';
 
-test('Posts Index template', function () {
-  expect(4);
-  visit('/posts').then(function () {
-    ok(exists(excerpt), 'Index template has excerpt(s).');
-    ok(exists(excerpt + ' .title'), 'excerpt title exists');
-    ok(exists(excerpt + ' .title a'), 'excerpt title has anchor');
-    ok(exists(excerpt + ' .summary'), 'excerpt summary exists');
-  });
-});
+//test('Posts Index template', function () {
+  //expect(5);
+  //visit('/posts').then(function () {
+    //ok(exists(excerpt), 'Index template has excerpt(s).');
+    //ok(exists(excerpt + ' .Blog-excerpt-title'), 'excerpt title exists');
+    //ok(exists(excerpt + ' .Blog-excerpt-title a'), 'excerpt title has anchor');
+    //ok(exists(excerpt + ' .Blog-excerpt-summary'), 'excerpt summary exists');
+    //ok(exists(excerpt + ' .u-button'), 'excerpt button exists');
+  //});
+//});

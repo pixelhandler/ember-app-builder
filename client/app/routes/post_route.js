@@ -8,5 +8,9 @@ module.exports = App.PostRoute = Ember.Route.extend({
     doneEditing: function () {
       this.modelFor(this.get('routeName')).save();
     }
-  }
+  }//,
+  //renderTemplate: function(controller, model) {
+    //this.render('recent', { outlet: 'recent' });
+    //return this._super(controller, model);
+  //}
 });
