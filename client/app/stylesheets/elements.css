@@ -53,6 +53,9 @@ footer {
   margin: 0;
   padding: 0;
 }
+footer small {
+  color: #777777;
+}
 
 a, a:link, a:hover, a:visited, a:active {
   text-decoration: none;
