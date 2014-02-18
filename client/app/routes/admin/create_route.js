@@ -3,7 +3,10 @@
 module.exports = App.AdminCreateRoute = Ember.Route.extend({
   model: function (params) {
     var post = this.store.createRecord('post');
-    post.set('author', {name:'pixelhandler'});
+    post.setProperties({
+      'author': { name: 'pixelhandler' },
+      'date': new Date()
+    });
     return post;
   },
 

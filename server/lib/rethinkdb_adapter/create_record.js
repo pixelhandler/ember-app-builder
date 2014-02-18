@@ -62,10 +62,8 @@ function transform(payload) {
 }
 
 function transformDate(payload) {
-  loginfo(payload.date);
   if (payload.date) {
     payload.date = new Date(payload.date);//.toISOString();
-    loginfo(payload.date);
   }
   return payload;
 }
