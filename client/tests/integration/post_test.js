@@ -1,3 +1,5 @@
+(function (window) {
+
 module('Post', {
   setup: function () {
     window.showdown = new Showdown.converter();
@@ -81,3 +83,5 @@ test('Second Post', function () {
     });
   });
 });
+
+}(window));

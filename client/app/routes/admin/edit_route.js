@@ -2,7 +2,7 @@
 
 module.exports = App.AdminEditRoute = Ember.Route.extend({
   model: function (params) {
-    return this.store.find('post', params.post_id);
+    return this.store.find('post', params.edit_id);
   },
 
   actions: {

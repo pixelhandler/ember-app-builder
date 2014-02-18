@@ -1,3 +1,5 @@
+(function (window) {
+
 module('Posts', {
   //setup: function () {},
   teardown: function () {
@@ -18,3 +20,5 @@ test('Posts Index template lists posts (archives)', function () {
     ok(exists(link), 'post link exists');
   });
 });
+
+}(window));

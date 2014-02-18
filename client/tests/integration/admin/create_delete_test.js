@@ -1,3 +1,5 @@
+(function (window) {
+
 var enableAdmin = '.u-enableAdmin';
 var disableAdmin = '.u-disableAdmin';
 
@@ -136,3 +138,5 @@ function expectPostMatches(action, postData, promises) {
     });
   });
 }
+
+}(window));

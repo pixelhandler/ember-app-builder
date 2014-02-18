@@ -1,3 +1,5 @@
+(function (window) {
+
 module('About', {
   //setup: function () {},
   teardown: function () {
@@ -24,3 +26,5 @@ test('About template', function () {
     ok(hasText(about, '1-714-512-2215'), '"1-714-512-2215" text present');
   });
 });
+
+}(window));

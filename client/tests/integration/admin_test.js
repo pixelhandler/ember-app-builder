@@ -1,3 +1,5 @@
+(function (window) {
+
 module('Admin', {
   setup: function () {
     window.sessionStorage.removeItem('admin_key');
@@ -40,3 +42,5 @@ test('Admin can be disabled', function () {
     });
   });
 });
+
+}(window));

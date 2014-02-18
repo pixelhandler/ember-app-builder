@@ -1,3 +1,5 @@
+(function (window) {
+
 var enableAdmin = '.u-enableAdmin';
 var disableAdmin = '.u-disableAdmin';
 
@@ -35,3 +37,5 @@ test('Admin Index template lists posts', function () {
     ok(exists(deleteButton), 'post delete button exists');
   });
 });
+
+}(window));

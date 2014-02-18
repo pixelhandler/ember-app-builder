@@ -1,3 +1,5 @@
+(function (window) {
+
 module('Index', {
   //setup: function () {},
   teardown: function () {
@@ -18,3 +20,5 @@ test('Index template, lists posts', function () {
     ok(exists(excerpt + ' .u-button'), 'excerpt button exists');
   });
 });
+
+}(window));

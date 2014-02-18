@@ -1,3 +1,5 @@
+(function (window) {
+
 module('Application', {
   setup: function () {
     window.showdown = new Showdown.converter();
@@ -62,3 +64,5 @@ function testLinks() {
   equal(text(heading), 'Links', 'Links heading present');
   equal(find(links).length, 3, 'Three links listed');
 }
+
+}(window));
