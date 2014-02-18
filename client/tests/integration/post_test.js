@@ -20,7 +20,7 @@ test('First Post', function () {
   expect(9);
 
   visit('/posts').then(function () {
-    var postLink = '.Blog-nav-list:eq(0) .Blog-nav-list-item:eq(0) a';
+    var postLink = '.Blog-nav .Blog-nav-list:eq(0) .Blog-nav-list-item:eq(0) a';
 
     visit(hyperlink(postLink)).then(function () {
       for (var attr in postAttrs) {
@@ -53,7 +53,7 @@ test('Second Post', function () {
   expect(9);
 
   visit('/posts').then(function () {
-    var postLink = '.Blog-nav-list:eq(0) .Blog-nav-list-item:eq(1) a';
+    var postLink = '.Blog-content .Blog-list-link:eq(1) a';
 
     click(postLink).then(function () {
       for (var attr in postAttrs) {

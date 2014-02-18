@@ -20,11 +20,11 @@
   </main>
 
   <nav class="Blog-nav u-blackTxt u-grayBkg u-offWhiteLtBorder u-sansSerif">
+    {{render "recent" this}}
+    {{partial "links"}}
     {{#if isAdmin}}
       {{partial "admin/menu"}}
     {{/if}}
-    {{render "recent" this}}
-    {{partial "links"}}
   </nav>
 </div>
 
@@ -32,9 +32,9 @@
   <p class="Footer-credits">
     The End. <small>[Personal blog, Copyright @2014 Bill Heaton] |
     {{#unless isAdmin}}
-      <span {{action "enableAdmin"}} class="u-grayTxt u-clickable">Admin</span>
+      <span {{action "enableAdmin"}} class="u-grayTxt u-clickable u-enableAdmin">Admin</span>
     {{else}}
-      <span {{action "disableAdmin"}} class="u-grayTxt u-clickable">Exit Admin</span>
+      <span {{action "disableAdmin"}} class="u-grayTxt u-clickable u-disableAdmin">Exit Admin</span>
     {{/unless}}
     </small>
   </p>

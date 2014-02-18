@@ -1,6 +1,7 @@
 module('Application', {
   setup: function () {
     window.showdown = new Showdown.converter();
+    window.sessionStorage.removeItem('admin_key');
   },
   teardown: function () {
     unload('post');
