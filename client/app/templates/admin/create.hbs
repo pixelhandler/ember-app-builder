@@ -1,0 +1,15 @@
+<p>
+  <strong>Create a Blog Post</strong>
+</p>
+{{#unless isPreviewing}}
+  <button {{action 'save'}} class="u-button">Save</button>
+  <button {{action 'cancel'}} class="u-button">Cancel</button>
+  <button {{action 'preview'}} class="u-button">Preview</button>
+  <hr>
+  {{partial 'admin/form'}}
+{{else}}
+  <button {{action 'edit'}} class="u-button">Edit</button>
+  <hr>
+
+  {{partial 'admin/preview'}}
+{{/unless}}

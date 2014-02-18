@@ -144,6 +144,23 @@
   font-size: 1em
 }
 
+.Admin {}
+
+.Admin-form {}
+
+.Admin-form input,
+.Admin-form textArea {
+  width: 100%;
+}
+
+.Admin-form textArea {
+  min-height: 150px;
+}
+
+.Admin-form-body textArea {
+  min-height: 250px;
+}
+
 @media (min-width: 48em) {
 
   .Blog-body {

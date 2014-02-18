@@ -43,20 +43,20 @@
   border-bottom: 1px dashed rgba(0, 0, 0, .5);
 }
 
-.u-grayText,
-.u-grayText a,
-.u-grayText a:active,
-.u-grayText a:hover {
+.u-grayTxt,
+.u-grayTxt a,
+.u-grayTxt a:active,
+.u-grayTxt a:hover {
   color: #d2d2d2;
 }
 .u-grayText a {
   border-bottom: 1px dashed #d2d2d2;
 }
 
-.u-medGrayText,
-.u-medGrayText a,
-.u-medGrayText a:active,
-.u-medGrayText a:hover {
+.u-medGrayTxt,
+.u-medGrayTxt a,
+.u-medGrayTxt a:active,
+.u-medGrayTxt a:hover {
   color: #777777;
 }
 .u-medGrayText a {
@@ -188,6 +188,12 @@ a.u-button {
   background: #0082be;
   text-shadow: none;
   color: #ffffff!important;
+}
+
+/* Misc */
+.u-clickable {
+  cursor: pointer;
+  display: inline;
 }
 
 /* Clear fix */
