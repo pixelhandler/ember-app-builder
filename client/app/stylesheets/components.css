@@ -68,11 +68,11 @@
 
 .Blog-list-date {
   float: left;
-  width: 25%;
+  width: 20%;
 }
 
-.Blog-list-link {
-  margin-left: 25%;
+.Blog-list-item {
+  margin-left: 20%;
   margin-bottom: 1em;
 }
 

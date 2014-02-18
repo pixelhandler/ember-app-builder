@@ -3,7 +3,7 @@
 module.exports = App.ApplicationController = Ember.ArrayController.extend({
 
   isAdmin: function () {
-    return window.sessionStorage.getItem('admin_key') === 'secret'; 
+    return window.sessionStorage.getItem('admin_key') === 'secret';
   }.property(),
 
   actions: {

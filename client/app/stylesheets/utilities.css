@@ -190,6 +190,11 @@ a.u-button {
   color: #ffffff!important;
 }
 
+.u-button--sm {
+  font-size: 1.25rem;
+  padding: .5rem;
+}
+
 /* Misc */
 .u-clickable {
   cursor: pointer;

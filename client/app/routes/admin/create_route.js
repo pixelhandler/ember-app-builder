@@ -2,7 +2,9 @@
 
 module.exports = App.AdminCreateRoute = Ember.Route.extend({
   model: function (params) {
-    return this.store.createRecord('post');
+    var post = this.store.createRecord('post');
+    post.set('author', {name:'pixelhandler'});
+    return post;
   },
 
   actions: {

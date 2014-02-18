@@ -12,7 +12,7 @@ var debug = require('debug')('http');
 **/
 var options = {
   origin: function(origin, callback){
-    var allowed = ['http://localhost:8000'];
+    var allowed = ['http://localhost:8000', 'http://localhost:7357'];
     var isAllowed = allowed.indexOf(origin) !== -1;
     callback(null, isAllowed);
   }
