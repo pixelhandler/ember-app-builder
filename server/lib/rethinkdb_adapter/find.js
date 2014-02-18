@@ -51,10 +51,24 @@ function findError(err, connection, callback) {
 }
 
 function findSuccess(type, json, connection, callback) {
+  json = transform(json);
   var payload = {};
   var rootKey = inflect.pluralize(type);
   payload[rootKey] = [ json ];
   loginfo("Success find %s id: %s, connection id: %s", type, json.id, connection._id);
   callback(null, payload);
   connection.close();
+}
+
+function transform(payload) {
+  return transformDate(payload);
+}
+
+function transformDate(payload) {
+  loginfo(payload.date);
+  if (payload.date) {
+    payload.date = payload.date.toISOString();
+    loginfo(payload.date);
+  }
+  return payload;
 }

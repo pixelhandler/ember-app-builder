@@ -25,9 +25,10 @@ module.exports = function(adapter, connect) {
     @param {Function} callback that accepts arguments: {Error} err, {Object} (JSON) result
   **/
   adapter.createRecord = function (type, record, callback) {
+    var payload = transform(record);
     var db = _adapter.db;
     _connect(function (err, connection) {
-      r.db(db).table(type).insert(record, {returnVals: true})
+      r.db(db).table(type).insert(payload, {returnVals: true})
         .run(connection, function (err, result) {
           if (err) {
             createError(err, connection, callback);
@@ -51,7 +52,20 @@ function createSuccess(type, result, connection, callback) {
   var json = result.new_val;
   var rootKey = inflect.pluralize(type);
   var payload = {};
-  payload[rootKey] = [ json ];
+  payload[rootKey] = [ transform(json) ];
   loginfo("Success create %s id: %s, connection id: %s", type, json.id, connection._id);
   callback(null, payload);
+}
+
+function transform(payload) {
+  return transformDate(payload);
+}
+
+function transformDate(payload) {
+  loginfo(payload.date);
+  if (payload.date) {
+    payload.date = new Date(payload.date);//.toISOString();
+    loginfo(payload.date);
+  }
+  return payload;
 }

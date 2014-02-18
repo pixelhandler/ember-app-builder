@@ -110,6 +110,7 @@ function findError(err, callback) {
 
 function findQuerySuccess(type, cursor, meta, connection, callback) {
   cursor.toArray(function(err, results) {
+    results = transform(results);
     var msg;
     if (err) {
       msg = "[ERROR][%s][find][toArray] %s:%s\n%s";
@@ -124,4 +125,21 @@ function findQuerySuccess(type, cursor, meta, connection, callback) {
       callback(null, payload);
     }
   });
+}
+
+function transform(results) {
+  var payload = [];
+  for (var i = 0; i < results.length; i++) {
+    payload.push(transformDate(results[i]));
+  }
+  return payload;
+}
+
+function transformDate(payload) {
+  loginfo(payload.date);
+  if (payload.date) {
+    payload.date = payload.date.toISOString();
+    loginfo(payload.date);
+  }
+  return payload;
 }
