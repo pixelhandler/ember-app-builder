@@ -91,7 +91,8 @@ test('Preview of edited post', function () {
       fillIn(inputs[field], excerptText).then(function () {
         click(buttons.preview).then(function () {
           var selector = template[field];
-          ok(hasText(selector, excerptText), 'Edited post ' + field + ' has text: "' + excerptText + '"');
+          var previewText = $(window.showdown.makeHtml(excerptText)).text();
+          ok(hasText(selector, previewText.slice(-13)), 'Edited post ' + field + ' has text: "' + excerptText + '"');
         });
       });
     });
@@ -117,7 +118,8 @@ test('Save edited post, success redirects to index', function () {
           equal(path(), 'admin.index', 'Successfully saving an edited post redirects to Admin index');
           visit('/posts/' + id).then(function () {
             var selector = template[field];
-            ok(hasText(selector, excerptText), 'Saved edit to ' + field + ' has text: "' + excerptText + '"');
+            var postText = $(window.showdown.makeHtml(excerptText)).text();
+            ok(hasText(selector, postText.slice(-13)), 'Saved edit to ' + field + ' has text: "' + excerptText + '"');
           });
         });
       });

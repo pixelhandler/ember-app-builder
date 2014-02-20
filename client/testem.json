@@ -4,6 +4,7 @@
     "public/vendor.js",
     "public/app.js",
     "tests/support/test-helpers.js",
+    "seeds/posts.js",
     "tests/**/*_test.js"
   ],
   "launch_in_dev": ["safari"],

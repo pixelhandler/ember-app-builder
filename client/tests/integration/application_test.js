@@ -47,14 +47,16 @@ test('Post detail page still shows list of posts', function () {
   });
 });
 
+var testData = window.testData;
+
 function testRecentPosts() {
   var list = '.Blog-nav .Blog-nav-list:eq(0)';
   var heading = '.Blog-nav h4:eq(0)';
   var links = list + ' .Blog-nav-list-item a';
   equal(text(heading), 'Recent Posts', 'Posts heading present');
-  equal(find(links).length, 2, 'Two posts listed');
-  equal(text(links + ':eq(0)'), 'Rails is Omakase', '1st post title and author listed');
-  equal(text(links + ':eq(1)'), 'The Parley Letter', '2nd post title and author listed');
+  equal(find(links).length, testData.length, testData.length + ' posts listed');
+  equal(text(links + ':eq(0)'), testData[0].title, '1st post title and author listed');
+  equal(text(links + ':eq(1)'), testData[1].title, '2nd post title and author listed');
 }
 
 function testLinks() {

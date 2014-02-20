@@ -1,5 +1,7 @@
 (function (window) {
 
+var testData = window.testData;
+
 module('Post', {
   setup: function () {
     window.showdown = new Showdown.converter();
@@ -32,10 +34,10 @@ test('First Post', function () {
       }
 
       var postContent = {
-          title: 'Rails is Omakase',
-          author: 'd2h',
-          excerpt: 'software environments',
-          body: 'Rails is not that. Rails is omakase'
+          title: testData[0].title,
+          author: testData[0].author.name,
+          excerpt: testData[0].excerpt.slice(0, 26),
+          body: $(window.showdown.makeHtml(testData[0].body)).text().slice(0, 26)
         },
         selector,
         matching;
@@ -65,10 +67,10 @@ test('Second Post', function () {
       }
 
       var postContent = {
-          title: 'The Parley Letter',
-          author: 'd2h',
-          excerpt: 'Ruby Rogues podcast',
-          body: 'oldest Rails app in the world'
+          title: testData[1].title,
+          author: testData[1].author.name,
+          excerpt: testData[1].excerpt.slice(0, 26),
+          body: testData[1].body.slice(0, 26)
         },
         selector,
         matching;

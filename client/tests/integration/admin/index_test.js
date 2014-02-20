@@ -5,6 +5,7 @@ var disableAdmin = '.u-disableAdmin';
 
 module('Admin Index', {
   setup: function () {
+    window.showdown = new Showdown.converter();
     window.sessionStorage.removeItem('admin_key');
     visit('/').then(function () {
       click(enableAdmin);
