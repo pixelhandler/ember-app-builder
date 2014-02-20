@@ -2,9 +2,9 @@
   <strong>Edit a Blog Post</strong>
 </p>
 {{#if isEditing}}
+  <button {{action 'preview'}} class="u-button u-preview">Preview</button>
   <button {{action 'save'}} class="u-button u-save">Save</button>
   <button {{action 'cancel'}} class="u-button u-cancel">Cancel</button>
-  <button {{action 'preview'}} class="u-button u-preview">Preview</button>
   <hr>
   {{partial 'admin/form'}}
 {{else}}
