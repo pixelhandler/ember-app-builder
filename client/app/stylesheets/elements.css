@@ -64,3 +64,19 @@ a, a:link, a:hover, a:visited, a:active {
 strong {
   color: #0082be; /* blue */
 }
+
+pre, code {
+  border: 1px solid #292929;
+  border-radius: 6px;
+  background-color: #292929;
+  color: #5DB9F1;
+}
+
+pre {
+  padding: 2rem;
+}
+
+code {
+  font-size: 1.5rem;
+  padding: .25rem;
+}
