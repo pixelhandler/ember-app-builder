@@ -65,11 +65,14 @@
 
 .Blog-excerpt {}
 
-.Blog-list {}
+.Blog-list {
+  line-height: 1.25em;
+}
 
 .Blog-list-date {
-  float: left;
   width: 20%;
+  float: left;
+  margin-bottom: 1em;
 }
 
 .Blog-list-item {

@@ -14,7 +14,7 @@ exports.config = {
       defaultExtension: 'js',
       joinTo: {
         'app.js': /^app/,
-        'vendor.js': new RegExp('^vendor\/'+ environment +'\/.+\.js$')
+        'vendor.js': new RegExp('^vendor\/' + environment + '\/.+\.js$')
       },
       order: {
         before: [
@@ -48,7 +48,7 @@ exports.config = {
     vendor: /vendor[\\/]/
   },
   optimize: false,
-  sourceMaps: false,
+  sourceMaps: true,
   plugins: {
     autoReload: {
       enabled: true

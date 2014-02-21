@@ -39,8 +39,10 @@ h6, small {
   margin: 0;
   padding: 0;
 }
-p {
+p, ul, dl {
   margin: 0 0 1em 0;
+}
+p, li, dt, dd {
   line-height: 1.8em;
 }
 small {

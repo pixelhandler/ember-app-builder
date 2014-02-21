@@ -195,6 +195,14 @@ a.u-button {
   padding: .5rem;
 }
 
+.u-button--wide {
+  text-align: center;
+  width: 100%;
+  margin-top: 5rem;
+  font-weight: normal;
+  font-family: 'outageregular', sans-serif;
+}
+
 /* Misc */
 .u-clickable {
   cursor: pointer;

@@ -2,9 +2,7 @@ build: lint clean
 	@brunch b
 
 clean:
-	@rm -f ./public/*.js
-	@rm -f ./public/*.css
-	@rm -f ./public/*.html
+	@rm -fr ./public/*
 
 dist: clean build prod
 
@@ -35,8 +33,8 @@ test: lint
 	@testem
 
 coverage: lint
-	@open http://localhost:8080/tests/coverage.html?coverage=true
-	@python -m SimpleHTTPServer 8080
+	@open http://localhost:8989/tests/coverage.html?coverage=true
+	@python -m SimpleHTTPServer 8989
 
 ci: dist
 	@grunt blanket_qunit --verbose

@@ -10,6 +10,7 @@ module('Admin Create/Delete', {
     return visit('/admin');
   },
   teardown: function () {
+    unload('post');
     App.reset();
     window.sessionStorage.removeItem('admin_key');
   }
