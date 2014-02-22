@@ -9,6 +9,7 @@ html {
   font-size: 62.5%;
 }
 body {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
   font-size: 1.8rem;
   margin: 0;
   padding 0;
@@ -79,6 +80,7 @@ pre {
 }
 
 code {
+  font-family: Consolas, 'Andale Mono', AndaleMono, monospace;
   font-size: 1.5rem;
-  padding: .25rem;
+  padding: .5rem .25rem .25rem .25rem;
 }

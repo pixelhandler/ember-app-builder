@@ -163,6 +163,8 @@
 /* Button */
 
 .u-button {
+  font-weight: normal;
+  font-family: 'outageregular', sans-serif;
   background: #d2d2d2;
   display: inline-block;
   padding: .4em .8em;
@@ -193,14 +195,39 @@ a.u-button {
 .u-button--sm {
   font-size: 1.25rem;
   padding: .5rem;
+  line-height: 1em;
+}
+
+.u-button--reverse,
+a.u-button--reverse {
+  color: #ffffff;
+  background: #777777;
 }
 
 .u-button--wide {
   text-align: center;
   width: 100%;
   margin-top: 5rem;
-  font-weight: normal;
-  font-family: 'outageregular', sans-serif;
+}
+
+.u-save, .u-edit, a.u-edit, .u-save, .u-cancel, .u-destroy {
+  color: #ffffff;
+}
+
+.u-edit, a.u-edit {
+  background-color: #777777;
+}
+
+.u-save {
+  background-color: #39af4c;
+}
+
+.u-cancel {
+  background-color: #e81e25;
+}
+
+.u-destroy {
+  background-color: #e81e25;
 }
 
 /* Misc */
