@@ -5,7 +5,7 @@ require('../mixins/record_chunks_mixin');
 module.exports = App.PostsIndexRoute = Ember.Route.extend(App.RecordChunksMixin, {
 
   resourceName: 'post',
-  controllerName: 'postsIndex',
+
   limit: 20,
   offset: -20,
 

@@ -14,6 +14,9 @@ require('init');
       container: function () {
         return app.__container__;
       },
+      route: function (name) {
+        return helper.container().lookup('route:' + name);
+      },
       controller: function (name) {
         return helper.container().lookup('controller:' + name);
       },
@@ -43,6 +46,14 @@ require('init');
     return helper;
   };
 
+  Ember.Test.registerHelper('route', function (app, name) {
+    return testing(app).route(name);
+  });
+
+  Ember.Test.registerHelper('controller', function (app, name) {
+    return testing(app).controller(name);
+  });
+
   Ember.Test.registerHelper('path', function (app) {
     return testing(app).path();
   });
@@ -70,7 +81,8 @@ require('init');
   });
 
   // Move app to an element on the page so it can be seen while testing.
-  document.write('<div id="test-app-container"><div id="ember-testing"></div></div>');
+  var style = ' style="position:fixed;right:0;width:50%;top:50%;background-color:white;border: 1px solid gray;zoom:50%;"';
+  document.write('<div id="test-app-container"' + style + '><div id="ember-testing"></div></div>');
   App.rootElement = rootElem;
   App.setupForTesting();
   App.injectTestHelpers();

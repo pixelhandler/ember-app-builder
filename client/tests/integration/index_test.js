@@ -3,6 +3,8 @@
 module('Index', {
   setup: function () {
     window.showdown = new Showdown.converter();
+    route('index').setProperties({'offset': -5, 'loadedIds': []});
+    controller('index').get('content').length = 0;
   },
   teardown: function () {
     unload('post');

@@ -9,7 +9,7 @@ module.exports = App.RecordChunksMixin = Ember.Mixin.create({
     @prop (String) controllerName - name of controller to set `hasMore` flag on
   **/
   resourceName: null,
-  controllerName: null,
+
   /**
     Prototype using mixin may redefine limit and offset as needed.
   **/
@@ -17,20 +17,21 @@ module.exports = App.RecordChunksMixin = Ember.Mixin.create({
   offset: -5,
 
   beforeModel: function () {
-    this.offset = this.offset + this.limit;
+    this.set('offset', this.get('offset') + this.get('limit'));
   },
 
   model: function () {
-    var query = { offset: this.offset, limit: this.limit };
-    return this.store.find(this.resourceName, query);
+    var query = { offset: this.get('offset'), limit: this.get('limit') };
+    return this.store.find(this.get('resourceName'), query);
   },
 
   afterModel: function (collection) {
-    this.set('meta', this.store.metadataFor(this.resourceName));
+    this.set('meta', this.store.metadataFor(this.get('resourceName')));
+    var loaded = this.get('loadedIds');
     collection.mapBy('id').forEach(function (id) {
-      this.loadedIds.push(id);
-    }.bind(this));
-    this.controllerFor(this.controllerName).set('hasMore', this.get('hasMore'));
+      loaded.push(id);
+    });
+    this.set('loadedIds', loaded.uniq());
     return collection;
   },
 
@@ -40,15 +41,16 @@ module.exports = App.RecordChunksMixin = Ember.Mixin.create({
   setupController: function (controller) {
     var collection = [];
     this.get('loadedIds').forEach(function (id) {
-      var model = this.store.getById(this.resourceName, id);
+      var model = this.store.getById(this.get('resourceName'), id);
       if (model) {
         collection.push(model);
       }
     }.bind(this));
+    controller.set('hasMore', this.get('hasMore'));
     this._super(controller, collection);
   },
 
   hasMore: function () {
-    return this.loadedIds.length < this.get('meta.total');
+    return this.get('loadedIds').length < this.get('meta.total');
   }.property('meta.total').volatile()
 });
