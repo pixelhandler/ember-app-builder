@@ -208,6 +208,7 @@ a.u-button--reverse {
   text-align: center;
   width: 100%;
   margin-top: 5rem;
+  padding: 1rem;
 }
 
 .u-save, .u-edit, a.u-edit, .u-save, .u-cancel, .u-destroy {

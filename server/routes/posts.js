@@ -18,7 +18,7 @@ db.setup('blog', { catalogs: 'id', posts: 'id' });
   @param {Object} app - express application instance
   @param {Function} options - middleware callback (cors options)
 **/
-module.exports = function(app, options) {
+module.exports = function(app, cors, restrict) {
 
   /**
     Create a post
@@ -26,7 +26,7 @@ module.exports = function(app, options) {
     Route: (verb) POST /posts
     @async
   **/
-  app.post('/posts', options, function (req, res) {
+  app.post('/posts', cors, restrict, function (req, res) {
     db.createRecord('posts', req.body.post, function (err, payload) {
       if (err) {
         debug(err);
@@ -43,7 +43,7 @@ module.exports = function(app, options) {
     Route: (verb) GET /posts
     @async
   **/
-  app.get('/posts', options, function (req, res) {
+  app.get('/posts', cors, function (req, res) {
     db.findQuery('posts', req.query, function (err, payload) {
       if (err) {
         debug(err);
@@ -60,7 +60,7 @@ module.exports = function(app, options) {
     Route: (verb) GET /posts/:id
     @async
   **/
-  app.get('/posts/:id', options, function (req, res) {
+  app.get('/posts/:id', cors, function (req, res) {
     db.find('posts', req.params.id, function (err, payload) {
       if (err) {
         debug(err);
@@ -77,7 +77,7 @@ module.exports = function(app, options) {
     Route: (verb) PUT /posts/:id
     @async
   **/
-  app.put('/posts/:id', options, function (req, res) {
+  app.put('/posts/:id', cors, restrict, function (req, res) {
     db.updateRecord('posts', req.params.id, req.body.post, function (err, payload) {
       if (err) {
         debug(err);
@@ -94,7 +94,7 @@ module.exports = function(app, options) {
     Route: (verb) DELETE /posts/:id
     @async
   **/
-  app.del('/posts/:id', options, function (req, res) {
+  app.del('/posts/:id', cors, restrict, function (req, res) {
     db.deleteRecord('posts', req.params.id, function (err) {
       if (err) {
         debug(err);
