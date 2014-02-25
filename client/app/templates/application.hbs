@@ -22,7 +22,7 @@
   <nav class="Blog-nav u-blackTxt u-grayBkg u-offWhiteLtBorder u-sansSerif">
     {{render "recent" this}}
     {{partial "links"}}
-    {{#if isAdmin}}
+    {{#if isLoggedIn}}
       {{partial "admin/menu"}}
     {{/if}}
   </nav>
@@ -30,12 +30,25 @@
 
 <footer class="Footer u-sansSerif u-medGrayTxt u-textCenter u-blackBkg u-grayTopBorder">
   <p class="Footer-credits">
-    The End. <small>[Personal blog, Copyright @2014 Bill Heaton] |
-    {{#unless isAdmin}}
-      <span {{action "enableAdmin"}} class="u-grayTxt u-clickable u-enableAdmin">Admin</span>
+    {{#unless showLogin}}
+      The End.
+      <small>[Personal blog, Copyright @2014 Bill Heaton] |
+        <span {{action "enableAdmin"}} class="u-grayTxt u-clickable u-enableAdmin">Admin</span>
+      </small>
     {{else}}
-      <span {{action "disableAdmin"}} class="u-grayTxt u-clickable u-disableAdmin">Exit Admin</span>
+      <small>
+        {{#unless isLoggedIn}}
+          <label for="username">Username</label>: {{input value=username name="username"}}
+          <label for="password">Password</label>: {{input value=password name="password" type="password"}}
+          <span {{action "login" view}} class="u-grayTxt u-clickable u-login">Login</span> |
+          <span {{action "disableAdmin"}} class="u-grayTxt u-clickable u-disableAdmin">Cancel</span>
+        {{else}}
+          <span {{action "logout"}} class="u-grayTxt u-clickable u-logout">Logout</span>
+        {{/unless}}
+        {{#if error}}
+          <span class="u-redTxt">{{error}}</span>
+        {{/if}}
+      </small>
     {{/unless}}
-    </small>
   </p>
 </footer>

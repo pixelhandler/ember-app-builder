@@ -3,7 +3,7 @@
 module.exports = App.AdminRoute = Ember.Route.extend({
   activate: function () {
     var controller = this.controllerFor('application');
-    if (controller.get('isAdmin') !== true) {
+    if (controller.get('isLoggedIn') !== true) {
       this.transitionTo('index');
     }
   }

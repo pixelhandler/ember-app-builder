@@ -17,8 +17,7 @@ var options = {
     callback(null, isAllowed);
   },
   credentials: true,
-  methods: ['POST', 'PUT', 'GET', 'DELETE'],
-  credentials: true
+  methods: ['POST', 'PUT', 'GET', 'DELETE']
 };
 
 /**
