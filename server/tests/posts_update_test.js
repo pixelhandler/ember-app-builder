@@ -1,7 +1,10 @@
 var app  = require(__dirname + '/../app.js'),
   port = 8888,
   assert = require('assert'),
-  request = require('supertest');
+  request = require('superagent').agent();
+
+var config = require('../config')();
+var serverUrl = 'http://localhost:' + port;
 
 describe('Posts', function () {
 
@@ -24,34 +27,39 @@ describe('Posts', function () {
     describe('/posts/:id', function () {
 
       it('updates a "post" record, excerpt changed', function (done) {
-        request(app)
-          .get('/posts?order=desc')
-          .end(function (err, res) {
-            if (err) return done(err);
-            var id = res.body.posts[0].id;
-            var payload = { post: res.body.posts[0] };
-            payload.post.excerpt += " [updatable]";
-            delete payload.post.id;
-            request(app)
-              .put('/posts/'+id)
-              .send(payload)
-              .expect(200)
-              .expect(function (res) {
-                var post = res.body.posts[0];
-                if (!post || post.excerpt.match(/\[updatable\]/) === null) {
-                  throw new Error('post not updatable');
-                }
-              })
-              .end(handleDone(done));
+        var cookie;
+        var credentials = config.admin;
+        request.post(serverUrl + '/sessions')
+          .send(credentials)
+          .end(function (res) {
+            assert(res.ok);
+            assert(res.noContent);
+            cookie = res.headers['set-cookie'];
+            assert(cookie);
+            cookie = cookie[0].slice(0, cookie[0].indexOf(';'));
+
+            request.get(serverUrl + '/posts?order=desc')
+              .set('Cookie', cookie) //.withCredentials()
+              .end(function (res) {
+                assert(res.ok);
+                var id = res.body.posts[0].id;
+                assert(id);
+                var payload = { post: res.body.posts[0] };
+                payload.post.excerpt += " [updatable]";
+                delete payload.post.id;
+                request.put(serverUrl + '/posts/' + id)
+                  .set('Cookie', cookie) //.withCredentials()
+                  .send(payload)
+                  .end(function (res) {
+                    assert(res.ok);
+                    var post = res.body.posts[0];
+                    assert(post);
+                    assert(post.excerpt.match(/\[updatable\]/));
+                    done();
+                  });
+              });
           });
       });
     });
   });
 });
-
-function handleDone(done) {
-  return function (err, res) {
-    if (err) return done(err);
-    done();
-  };
-}

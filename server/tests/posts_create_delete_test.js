@@ -1,7 +1,10 @@
 var app  = require(__dirname + '/../app.js'),
   port = 8888,
   assert = require('assert'),
-  request = require('supertest');
+  request = require('superagent').agent();
+
+var config = require('../config')();
+var serverUrl = 'http://localhost:' + port;
 
 describe('Posts', function () {
   var postId;
@@ -25,23 +28,35 @@ describe('Posts', function () {
     describe('/posts', function () {
 
       it('create a "post" record, then "delete" it', function (done) {
-        var id;
-        request(app)
-          .post('/posts')
-          .send(newPost)
-          .expect(200)
-          .expect(function (res) {
-            var post = res.body.posts[0];
-            id = post.id;
-            if (!post || post.title.match(/New Post/) === null) {
-              throw new Error('post not created');
-            }
-          })
-          .end(function (err, res) {
-            request(app)
-              .del('/posts/' + id)
-              .expect(204)
-              .end(handleDone(done));
+        var id, cookie;
+        var credentials = config.admin;
+        request.post(serverUrl + '/sessions')
+          .send(credentials)
+          .end(function (res) {
+            assert(res.ok);
+            assert(res.noContent);
+            cookie = res.headers['set-cookie'];
+            assert(cookie);
+            cookie = cookie[0].slice(0, cookie[0].indexOf(';'));
+
+            request.post(serverUrl + '/posts')
+              .set('Content-Type', 'application/json; charset=UTF-8')
+              .send(newPost)
+              .set('Cookie', cookie) //.withCredentials()
+              .end(function (res) {
+                assert(res.ok);
+                var post = res.body.posts[0];
+                id = post.id;
+                assert(post);
+                assert(post.title.match(/New Post/));
+
+                request.del(serverUrl + '/posts/' + id)
+                  .set('Cookie', cookie) //.withCredentials()
+                  .end(function (res) {
+                    assert(res.noContent);
+                    done();
+                  });
+              });
           });
       });
     });
@@ -57,10 +72,3 @@ var newPost = {
     body: "New post body content, blah, blah..." 
   }
 };
-
-function handleDone(done) {
-  return function (err, res) {
-    if (err) return done(err);
-    done();
-  };
-}

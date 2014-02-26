@@ -21,6 +21,7 @@
   "devDependencies": {
     "mocha": "*",
     "supertest": "*",
+    "superagent": "*",
     "request": "*",
     "async": "*"
   }
