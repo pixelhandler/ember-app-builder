@@ -2,17 +2,38 @@
 
 var enableAdmin = '.u-enableAdmin';
 var disableAdmin = '.u-disableAdmin';
+var footerInputs = {
+  username: '.Footer input[name="username"]',
+  password: '.Footer input[name="password"]'
+};
+var login = '.Footer .u-login';
+var logout = 'Footer .u-logout';
 
 module('Admin Create/Delete', {
   setup: function () {
     window.showdown = new Showdown.converter();
-    window.sessionStorage.setItem('admin_key', 'secret');
-    return visit('/admin');
+    stop();
+    visit('/').then(function () {
+      click(enableAdmin).then(function () {
+        fillIn(footerInputs.username, 'admin').then(function () {
+          fillIn(footerInputs.password, 'admin').then(function () {
+            click(login).then(function () {
+              start();
+            });
+          });
+        });
+      });
+    });
   },
   teardown: function () {
-    unload('post');
-    App.reset();
-    window.sessionStorage.removeItem('admin_key');
+    stop();
+    visit('/').then(function () {
+      click(logout).then(function () {
+        start();
+        unload('post');
+        App.reset();
+      });
+    });
   }
 });
 

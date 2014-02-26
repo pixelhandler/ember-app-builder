@@ -1,9 +1,10 @@
 var app  = require(__dirname + '/../app.js'),
   port = 8888,
   assert = require('assert'),
-  request = require('supertest');
+  request = require('superagent').agent();
 
 var config = require('../config')();
+var serverUrl = 'http://localhost:' + port;
 
 describe('Sessions', function () {
 
@@ -22,35 +23,42 @@ describe('Sessions', function () {
   });
 
   it('cannot access restricted endpoint /restricted', function () {
-    request(app)
-      .post('/restricted')
-      .expect(403);
+    request.post(serverUrl + '/restricted')
+      .end(function (res) {
+        assert(res.clientError);
+        assert(res.forbidden);
+      });
   });
 
   var credentials = config.admin;
 
-  it('POST /sessions w/ username & password', function (done) {
-    request(app)
-      .post('/sessions')
+  it('POST /sessions w/ username & password; access restricted; DELETE /sessions', function (done) {
+    var cookie;
+    var credentials = config.admin;
+    request.post(serverUrl + '/sessions')
       .send(credentials)
-      .expect(204)
-      .end(done);
-      // access restricted
-      //.end(function (err, res) {
-        //request(app)
-          //.post('/restricted')
-          //.withCredentials()
-          //.expect(204)
-          //.end(done);
-      //});
-      // logout at DELETE /sessions
-      //.end(function (err, res) {
-        //request(app)
-          //.del('/sessions')
-          //.withCredentials()
-          //.expect(204)
-          //.end(done);
-        //});
-  });
+      .end(function (res) {
+        assert(res.ok);
+        assert(res.noContent);
+        cookie = res.headers['set-cookie'];
+        assert(cookie);
+        cookie = cookie[0].slice(0, cookie[0].indexOf(';'));
 
+        request.post(serverUrl + '/restricted')
+          .set('Cookie', cookie) //.withCredentials()
+          .end(function (res) {
+            assert(res.ok);
+            assert(res.noContent);
+
+            request.del(serverUrl + '/sessions')
+              .set('Cookie', cookie) //.withCredentials()
+              .end(function (res) {
+                assert(res.ok);
+                assert(res.noContent);
+
+                done();
+              });
+          });
+      });
+  });
 });
