@@ -3,7 +3,13 @@
 var r = require('rethinkdb'),
   async = require('async');
 
-r.connect({ host: 'localhost', port: 28015}, function (err, conn) {
+var settings = {
+  host: process.env.RDB_HOST || 'localhost',
+  port: parseInt(process.env.RDB_PORT) || 28015,
+  db: process.env.RDB_DB
+};
+
+r.connect(settings, function (err, conn) {
   if (err) throw err;
 
   var name = 'blog';
