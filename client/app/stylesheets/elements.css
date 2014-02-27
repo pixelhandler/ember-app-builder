@@ -10,7 +10,7 @@ html {
 }
 body {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-  font-size: 1.8rem;
+  font-size: 1rem;
   margin: 0;
   padding 0;
 }
@@ -27,13 +27,13 @@ h1, h2 {
   font-weight: 400;
 }
 h1 {
-  font-size: 1.8em;
+  font-size: 1.3em;
 }
 h2 {
-  font-size: 1.6em;
+  font-size: 1.2em;
 }
 h3 {
-  font-size: 1.4em;
+  font-size: 1.1em;
   font-weight: 700;
 }
 h6, small {
@@ -44,7 +44,7 @@ p, ul, dl {
   margin: 0 0 1em 0;
 }
 p, li, dt, dd {
-  line-height: 1.8em;
+  line-height: 1.6em;
 }
 small {
   font-family: 'outageregular', sans-serif;
@@ -81,6 +81,28 @@ pre {
 
 code {
   font-family: Consolas, 'Andale Mono', AndaleMono, monospace;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: .5rem .25rem .25rem .25rem;
+}
+
+@media (min-width: 48em) {
+  body {
+    font-size: 1.8rem;
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
+  h3 {
+    font-size: 1.4em;
+    font-weight: 700;
+  }
+  p, li, dt, dd {
+    line-height: 1.8em;
+  }
+  code {
+    font-size: 1.5rem;
+  }
 }

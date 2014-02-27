@@ -163,6 +163,7 @@
 /* Button */
 
 .u-button {
+  font-size: 1.25rem;
   font-weight: normal;
   font-family: 'outageregular', sans-serif;
   background: #d2d2d2;
@@ -193,7 +194,7 @@ a.u-button {
 }
 
 .u-button--sm {
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding: .5rem;
   line-height: 1em;
 }
@@ -245,4 +246,16 @@ a.u-button--reverse {
 }
 .u-cf:after {
   clear: both;
+}
+
+@media (min-width: 48em) {
+
+  .u-button, a.u-button {
+    font-size: 1.25rem;
+  }
+  .u-button--sm, a.u-button--sm {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+
 }

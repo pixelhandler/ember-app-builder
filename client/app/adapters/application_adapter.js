@@ -1,5 +1,5 @@
 'use-strict';
 
 module.exports = App.ApplicationAdapter = DS.RESTAdapter.extend({
-  host: 'http://localhost:8888'
+  host: 'http://10.0.1.22:8888'
 });
