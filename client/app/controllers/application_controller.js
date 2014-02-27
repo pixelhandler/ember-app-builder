@@ -8,7 +8,17 @@ module.exports = App.ApplicationController = Ember.ArrayController.extend({
   showLogin: false,
   isLoggedIn: false,
 
+  isTwoColumns: true,
+
+  asideDisplayButton: function () {
+    return (this.get('isTwoColumns')) ? 'one column' : 'two columns';
+  }.property('isTwoColumns'),
+
   actions: {
+    toggleAside: function () {
+      this.toggleProperty('isTwoColumns');
+    },
+
     enableAdmin: function () {
       this.set('showLogin', true);
       return false;

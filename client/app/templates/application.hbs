@@ -12,19 +12,20 @@
   </div>
 </header>
 
-<div class="Blog-body">
-  <main class="Blog-content u-blackTxt u-offWhiteBkg">
+<div {{bind-attr class=":Blog-body isTwoColumns:Blog-body--two-col"}}>
+  <main {{bind-attr class=":Blog-content isTwoColumns:Blog-content--two-col :u-blackTxt :u-offWhiteBkg"}}>
     <article class="Box">
       {{outlet}}
     </article>
   </main>
 
-  <nav class="Blog-nav u-blackTxt u-grayBkg u-offWhiteLtBorder u-sansSerif">
+  <nav {{bind-attr class=":Blog-nav isTwoColumns:Blog-nav--two-col :u-blackTxt :u-grayBkg :u-offWhiteLtBorder :u-sansSerif"}}>
     {{render "recent" this}}
     {{partial "links"}}
     {{#if isLoggedIn}}
       {{partial "admin/menu"}}
     {{/if}}
+    <button class="u-button u-button--sm u-button--reverse u-button--desktop" {{action toggleAside}}>{{asideDisplayButton}}</button>
   </nav>
 </div>
 

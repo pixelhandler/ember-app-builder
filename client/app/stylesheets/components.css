@@ -168,6 +168,9 @@
 @media (min-width: 48em) {
 
   .Blog-body {
+    padding: 0;
+  }
+  .Blog-body--two-col {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
@@ -182,20 +185,24 @@
     -ms-flex: 1;
     flex: 1;
     -ms-flex-preferred-size: auto;
-
-    padding: 0;
   }
 
   .Blog-content {
-    min-width: 70%;
     margin: 0;
     padding-top: 2rem;
     padding-right: 3rem;
     padding-bottom: 6rem;
     padding-left: 4rem;
   }
+  .Blog-content--two-col {
+    min-width: 70%;
+  }
 
-  .Blog-nav, .Blog-aside {
+  .Blog-nav {
+    padding-left: 3rem;
+    padding-top: 2.25rem;
+  }
+  .Blog-nav--two-col, .Blog-aside--two-col {
     /* 30% is the width of the columns */
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 30%;
@@ -203,17 +210,13 @@
     -ms-flex: 0 0 30%;
     flex: 0 0 30%;
   }
-
-  .Blog-nav {
+  .Blog-nav--two-col {
     /* put the nav on the right */
     -webkit-box-ordinal-group: 0;
     -webkit-order: 1;
     -moz-box-ordinal-group: 0;
     -ms-flex-order: 1;
     order: 1;
-
-    padding-left: 3rem;
-    padding-top: 2.25rem;
   }
 
   .Header {

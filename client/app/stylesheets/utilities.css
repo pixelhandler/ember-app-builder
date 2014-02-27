@@ -212,6 +212,11 @@ a.u-button--reverse {
   padding: 1rem;
 }
 
+.u-button--desktop {
+  display: none;
+}
+
+
 .u-save, .u-edit, a.u-edit, .u-save, .u-cancel, .u-destroy {
   color: #ffffff;
 }
@@ -256,6 +261,9 @@ a.u-button--reverse {
   .u-button--sm, a.u-button--sm {
     font-size: 1rem;
     line-height: 1rem;
+  }
+  .u-button--desktop {
+    display: block;
   }
 
 }
