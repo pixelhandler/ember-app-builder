@@ -52,6 +52,16 @@ Adapter.prototype.find = function (type, id, callback) {
 };
 
 /**
+  @method findSlug
+  @param {String} type - name of resource
+  @param {String} slug
+  @param {Function} callback(err, result) - Callback args: Error, JSON Result
+**/
+Adapter.prototype.findSlug = function (type, slug, callback) {
+  return new NotImplementedError();
+};
+
+/**
   @method findQuery
   @param {String} type - name of resource
   @param {Object} query - key/value pairs

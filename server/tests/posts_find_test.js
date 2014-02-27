@@ -167,25 +167,25 @@ describe('Posts', function () {
       });
     });
 
-    describe('/posts/:id', function () {
+    describe('/posts/:slug', function () {
 
       it('includes one "post" record in the payload', function (done) {
         request(app)
           .get('/posts?order=desc')
           .end(function (err, res) {
             if (err) return done(err);
-            var id = res.body.posts[0].id;
+            var slug = res.body.posts[0].slug;
             request(app)
-              .get('/posts/' + id)
+              .get('/posts/' + slug)
               .set('Accept', 'application/json')
               .expect('Content-Type', /json/)
               .expect(200)
               .expect(/posts/)
-              .expect(/author/).expect(/body/).expect(/date/).expect(/excerpt/).expect(/title/).expect(/id/)
+              .expect(/author/).expect(/body/).expect(/date/).expect(/excerpt/).expect(/title/).expect(/id/).expect(/slug/)
               .expect(function (res) {
                 if (res.body.posts.length > 1) throw new Error('expected one record');
                 var post = res.body.posts[0];
-                if (!post) throw new Error('expected post id: ' + id);
+                if (!post) throw new Error('expected post slug: ' + slug);
                 if (post.title !== testData[0].title) throw new Error('expected first post title');
               })
               .end(handleDone(done));

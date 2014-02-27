@@ -55,13 +55,13 @@ module.exports = function(app, cors, restrict) {
   });
 
   /**
-    (Read) Find a post by id
+    (Read) Find a post by slug
 
-    Route: (verb) GET /posts/:id
+    Route: (verb) GET /posts/:slug
     @async
   **/
-  app.get('/posts/:id', cors, function (req, res) {
-    db.find('posts', req.params.id, function (err, payload) {
+  app.get('/posts/:slug', cors, function (req, res) {
+    db.findSlug('posts', req.params.slug, function (err, payload) {
       if (err) {
         debug(err);
         res.send(500);

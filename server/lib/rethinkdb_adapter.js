@@ -36,6 +36,12 @@ module.exports.setup = require(path('setup'))(adapter, onConnect);
 module.exports.find = require(path('find'))(adapter, onConnect);
 
 /**
+  Export {Function} find
+  @method find
+**/
+module.exports.findSlug = require(path('find_slug'))(adapter, onConnect);
+
+/**
   Export {Function} findQuery
   @method findQuery
 **/
