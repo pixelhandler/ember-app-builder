@@ -8,7 +8,7 @@ window.App = require('app');
 require('router');
 
 var loadOrder = [
-  'mixins', 'adapters', 'serializers', 'routes', 'models',
+  'lib', 'mixins', 'adapters', 'serializers', 'routes', 'models',
   'controllers', 'views', 'components', 'helpers', 'templates'
 ];
 

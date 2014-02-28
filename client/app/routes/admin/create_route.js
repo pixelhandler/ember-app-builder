@@ -3,11 +3,13 @@
 module.exports = App.AdminCreateRoute = Ember.Route.extend({
   model: function (params) {
     var post = this.store.createRecord('post');
-    post.setProperties({
-      'author': { name: 'pixelhandler' },
-      'date': new Date()
-    });
+    post.set('author', { name: 'pixelhandler' });
     return post;
+  },
+
+  setupController: function (controller, model) {
+    this._super(controller, model);
+    controller.set('dateInput', moment().format('L'));
   },
 
   actions: {

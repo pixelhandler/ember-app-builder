@@ -11,10 +11,13 @@
 
 <hr>
 
-<div class='intro'>
-  {{format-markdown excerpt}}
-</div>
-
-<div class='below-the-fold'>
-  {{format-markdown body}}
-</div>
+{{#if excerpt}}
+  <div class='intro'>
+    {{format-markdown excerpt}}
+  </div>
+{{/if}}
+{{#if body}}
+  <div class='below-the-fold'>
+    {{format-markdown body}}
+  </div>
+{{/if}}

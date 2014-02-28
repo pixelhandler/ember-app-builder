@@ -18,6 +18,14 @@ module.exports = App.AdminCreateController = Ember.ObjectController.extend({
     return slug;
   },
 
+  dateInput: null,
+
+  dateInputChanged: function () {
+    var input = this.get('dateInput');
+    if (!input) { return input; }
+    this.set('date', new Date(input));
+  }.observes('dateInput'),
+
   actions: {
     edit: function () {
       this.set('isPreviewing', false);
