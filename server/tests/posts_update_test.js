@@ -39,16 +39,16 @@ describe('Posts', function () {
             cookie = cookie[0].slice(0, cookie[0].indexOf(';'));
 
             request.get(serverUrl + '/posts?order=desc')
-              .set('Cookie', cookie) //.withCredentials()
+              .set('Cookie', cookie)
               .end(function (res) {
                 assert(res.ok);
-                var id = res.body.posts[0].id;
-                assert(id);
+                var slug = res.body.posts[0].slug;
+                assert(slug);
                 var payload = { post: res.body.posts[0] };
                 payload.post.excerpt += " [updatable]";
                 delete payload.post.id;
-                request.put(serverUrl + '/posts/' + id)
-                  .set('Cookie', cookie) //.withCredentials()
+                request.put(serverUrl + '/posts/' + slug)
+                  .set('Cookie', cookie)
                   .send(payload)
                   .end(function (res) {
                     assert(res.ok);
