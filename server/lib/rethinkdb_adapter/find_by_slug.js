@@ -25,7 +25,7 @@ module.exports = function(adapter, connect) {
     @param {Function} callback that accepts arguments: {Error} err, {Object} (JSON) result
     @async
   **/
-  adapter.findSlug = function (type, slug, callback) {
+  adapter.findBySlug = function (type, slug, callback) {
     var db = _adapter.db;
     loginfo('slug %s', slug);
     _connect(function (err, connection) {
@@ -40,7 +40,7 @@ module.exports = function(adapter, connect) {
         });
     });
   };
-  return adapter.findSlug;
+  return adapter.findBySlug;
 };
 
 /**

@@ -3,6 +3,7 @@
   @submodule routes/posts
   @requires app, rethinkdb_adapter
 **/
+var debug = require('debug')('posts');
 
 /**
   Setup database
@@ -61,7 +62,7 @@ module.exports = function(app, cors, restrict) {
     @async
   **/
   app.get('/posts/:slug', cors, function (req, res) {
-    db.findSlug('posts', req.params.slug, function (err, payload) {
+    db.findBySlug('posts', req.params.slug, function (err, payload) {
       if (err) {
         debug(err);
         res.send(500);
@@ -72,13 +73,13 @@ module.exports = function(app, cors, restrict) {
   });
 
   /**
-    Update a post by id
+    Update a post by slug
 
-    Route: (verb) PUT /posts/:id
+    Route: (verb) PUT /posts/:slug
     @async
   **/
-  app.put('/posts/:id', cors, restrict, function (req, res) {
-    db.updateRecord('posts', req.params.id, req.body.post, function (err, payload) {
+  app.put('/posts/:slug', cors, restrict, function (req, res) {
+    db.updateRecordBySlug('posts', req.params.slug, req.body.post, function (err, payload) {
       if (err) {
         debug(err);
         res.send(500);
@@ -89,13 +90,13 @@ module.exports = function(app, cors, restrict) {
   });
 
   /**
-    Delete a post by id
+    Delete a post by slug
 
-    Route: (verb) DELETE /posts/:id
+    Route: (verb) DELETE /posts/:slug
     @async
   **/
-  app.del('/posts/:id', cors, restrict, function (req, res) {
-    db.deleteRecord('posts', req.params.id, function (err) {
+  app.del('/posts/:slug', cors, restrict, function (req, res) {
+    db.deleteRecordBySlug('posts', req.params.slug, function (err) {
       if (err) {
         debug(err);
         res.send(500);

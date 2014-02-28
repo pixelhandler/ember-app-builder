@@ -36,10 +36,10 @@ module.exports.setup = require(path('setup'))(adapter, onConnect);
 module.exports.find = require(path('find'))(adapter, onConnect);
 
 /**
-  Export {Function} find
-  @method find
+  Export {Function} findBySlug
+  @method findBySlug
 **/
-module.exports.findSlug = require(path('find_slug'))(adapter, onConnect);
+module.exports.findBySlug = require(path('find_by_slug'))(adapter, onConnect);
 
 /**
   Export {Function} findQuery
@@ -60,16 +60,28 @@ module.exports.createRecord = require(path('create_record'))(adapter, onConnect)
 module.exports.updateRecord = require(path('update_record'))(adapter, onConnect);
 
 /**
+  Export {Function} updateRecordBySlug
+  @method updateRecordBySlug
+**/
+module.exports.updateRecordBySlug = require(path('update_record_by_slug'))(adapter, onConnect);
+
+/**
   Export {Function} deleteRecord
   @method deleteRecord
 **/
 module.exports.deleteRecord = require(path('delete_record'))(adapter, onConnect);
 
 /**
+  Export {Function} deleteRecordBySlug
+  @method deleteRecordBySlug
+**/
+module.exports.deleteRecordBySlug = require(path('delete_record_by_slug'))(adapter, onConnect);
+
+/**
   @method path
   @param {string} name - name of submodule to load
 **/
-function path (name) { 
+function path (name) {
   return './rethinkdb_adapter/' + name;
 }
 

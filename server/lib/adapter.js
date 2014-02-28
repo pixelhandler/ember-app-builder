@@ -57,7 +57,7 @@ Adapter.prototype.find = function (type, id, callback) {
   @param {String} slug
   @param {Function} callback(err, result) - Callback args: Error, JSON Result
 **/
-Adapter.prototype.findSlug = function (type, slug, callback) {
+Adapter.prototype.findBySlug = function (type, slug, callback) {
   return new NotImplementedError();
 };
 
@@ -94,7 +94,7 @@ Adapter.prototype.findAll = function (type, callback) {
   @method createRecord
   @param {String} type
   @param {Object} record
-  @param {Function} callback(err, result) - Callback args: Error, JSON Result 
+  @param {Function} callback(err, result) - Callback args: Error, JSON Result
 **/
 Adapter.prototype.createRecord = function (type, record, callback) {
   return new NotImplementedError();
@@ -112,12 +112,33 @@ Adapter.prototype.updateRecord = function (type, id, record, callback) {
 };
 
 /**
+  @method updateRecord
+  @param {String} type
+  @param {String) id
+  @param {Object} record
+  @param {Function} callback(err, result) - Callback args: Error, JSON Result
+**/
+Adapter.prototype.updateRecordBySlug = function (type, id, record, callback) {
+  return new NotImplementedError();
+};
+
+/**
   @method deleteRecord
   @param {String} type
   @param {Object} record
   @param {Function} callback(err, result) - Callback args: Error, (optional) JSON Result
 **/
 Adapter.prototype.deleteRecord = function (type, record, callback) {
+  return new NotImplementedError();
+};
+
+/**
+  @method deleteRecord
+  @param {String} type
+  @param {Object} record
+  @param {Function} callback(err, result) - Callback args: Error, (optional) JSON Result
+**/
+Adapter.prototype.deleteRecordBySlug = function (type, record, callback) {
   return new NotImplementedError();
 };
 

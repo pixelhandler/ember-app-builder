@@ -4,7 +4,6 @@
 **/
 var express = require('express');
 var cors = require('cors');
-var debug = require('debug')('http');
 var config = require('./config')();
 
 /**
