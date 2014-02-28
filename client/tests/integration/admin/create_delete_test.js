@@ -49,12 +49,13 @@ test('Menu has link to create a new post', function () {
 var inputs = {
   title: '.Admin-form-title input[name="title"]',
   slug: '.Admin-form-slug input[name="slug"]',
+  date: '.Admin-form-date input[name="date"]',
   excerpt: '.Admin-form-excerpt textarea[name="excerpt"]',
   body: '.Admin-form-body textarea[name="body"]'
 };
 
 test('Form to create post has title, slug, excerpt, body fields', function () {
-  expect(4);
+  expect(5);
 
   visit('/admin/create').then(function () {
     var selector;
