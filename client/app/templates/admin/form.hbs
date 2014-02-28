@@ -2,16 +2,23 @@
   <p class="Admin-form-title">
     <label>Title:</label>
     <br>
-    {{input type="text" value=title}}
+    {{input type="text" value=title name="title"}}
   </p>
+  {{#if isNew}}
+    <p class="Admin-form-slug">
+      <label>Slug:</label>
+      <br>
+      {{input type="text" value=slug name="slug"}}
+    </p>
+  {{/if}}
   <p class="Admin-form-excerpt">
     <label>Excerpt: [Markdown]</label>
     <br>
-    {{textarea type="text" value=excerpt}}
+    {{textarea type="text" value=excerpt name="excerpt"}}
   </p>
   <p class="Admin-form-body">
     <label>Body: [Markdown]</label>
     <br>
-    {{textarea value=body}}
+    {{textarea value=body name="body"}}
   </p>
 </div>

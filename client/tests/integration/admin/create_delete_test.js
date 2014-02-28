@@ -47,13 +47,14 @@ test('Menu has link to create a new post', function () {
 });
 
 var inputs = {
-  title: '.Admin-form-title input[type="text"]',
-  excerpt: '.Admin-form-excerpt textarea',
-  body: '.Admin-form-body textarea'
+  title: '.Admin-form-title input[name="title"]',
+  slug: '.Admin-form-slug input[name="slug"]',
+  excerpt: '.Admin-form-excerpt textarea[name="excerpt"]',
+  body: '.Admin-form-body textarea[name="body"]'
 };
 
-test('Form to create post has title, excerpt, body fields', function () {
-  expect(3);
+test('Form to create post has title, slug, excerpt, body fields', function () {
+  expect(4);
 
   visit('/admin/create').then(function () {
     var selector;
@@ -85,12 +86,14 @@ test('Form to create a new post has buttons for save, cancel, preview', function
   });
 });
 
+var dateStamp = Date.now().toString();
+
 var displayText = {
-  title: 'New Post Title' + Date.now().toString(),
+  title: 'New Post Title ' + dateStamp,
+  slug: 'new-post-title-' + dateStamp,
   excerpt: 'New Post Excerpt',
   body: 'New Post Body',
-  authorName: 'pixelhandler',
-  date: 'a few seconds ago'
+  authorName: 'pixelhandler'
 };
 
 var content = '.Blog-content';
@@ -98,8 +101,7 @@ var template = {
   title: content + ' h1',
   excerpt: content + ' .intro',
   body: content + ' .below-the-fold',
-  authorName: content + ' .author',
-  date: content + ' .date'
+  authorName: content + ' .author'
 };
 
 test('Preview of new post', function () {
@@ -109,6 +111,7 @@ test('Preview of new post', function () {
     click(createPost).then(function () {
       var promises = [];
       fillInNewPost(displayText, promises);
+      equal(find(inputs.slug).val(), displayText.slug, 'Slug filled in.');
       expectPostMatches(buttons.preview, displayText, promises);
     });
   });
@@ -139,10 +142,12 @@ test('Save new post, success redirects to index, then delete it', function () {
 
 function fillInNewPost(displayValues, promises) {
   var attrs = Ember.String.w('title excerpt body');
-
+  stop();
   attrs.forEach(function (field) {
     promises.push(fillIn(inputs[field], displayValues[field]));
   });
+  find(inputs.title).trigger('blur');
+  start();
 }
 
 function expectPostMatches(action, postData, promises) {

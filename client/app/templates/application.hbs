@@ -39,10 +39,12 @@
     {{else}}
       <small>
         {{#unless isLoggedIn}}
+          <form {{action "login" view on="submit"}} class="Footer-form">
           <label for="username">Username</label>: {{input value=username name="username"}}
           <label for="password">Password</label>: {{input value=password name="password" type="password"}}
-          <span {{action "login" view}} class="u-grayTxt u-clickable u-login">Login</span> |
-          <span {{action "disableAdmin"}} class="u-grayTxt u-clickable u-disableAdmin">Cancel</span>
+          <input type="submit" class="Footer-form-button u-grayTxt u-clickable u-login" value="Login">
+          <input {{action "disableAdmin"}} class="Footer-form-button u-grayTxt u-clickable u-disableAdmin" value="Cancel">
+          </form>
         {{else}}
           <span {{action "logout"}} class="u-grayTxt u-clickable u-logout">Logout</span>
         {{/unless}}

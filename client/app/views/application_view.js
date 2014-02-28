@@ -1,3 +1,3 @@
-App.ApplicationView = Ember.View.extend({
+module.exports = App.ApplicationView = Ember.View.extend({
   classNames: ['Blog']
 });

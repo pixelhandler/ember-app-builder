@@ -19,8 +19,10 @@ module.exports = App.ApplicationSerializer = DS.RESTSerializer.extend({
   serialize: function (record, options) {
     var json = this._super.apply(this, arguments);
     if (!json) { return json; }
-    json.slug = record.get('id');
-    if (json.id) { json.id = record.get('slug'); }
+    if (json.id) {
+      json.slug = record.get('id');
+      json.id = record.get('slug');
+    }
     return json;
   }
 });

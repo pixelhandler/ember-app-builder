@@ -126,7 +126,7 @@ test('Save edited post, success redirects to index', function () {
   expect(2);
 
   var href = hyperlink(editPost);
-  var id = href.slice(href.lastIndexOf('/') + 1);
+  var slug = href.slice(href.lastIndexOf('/') + 1);
 
   visit(href).then(function () {
     click(editButton).then(function () {
@@ -138,7 +138,7 @@ test('Save edited post, success redirects to index', function () {
       fillIn(inputs[field], excerptText).then(function () {
         click(buttons.save).then(function () {
           equal(path(), 'admin.index', 'Successfully saving an edited post redirects to Admin index');
-          visit('/posts/' + id).then(function () {
+          visit('/posts/' + slug).then(function () {
             var selector = template[field];
             var postText = $(window.showdown.makeHtml(excerptText)).text();
             ok(hasText(selector, postText.slice(-13)), 'Saved edit to ' + field + ' has text: "' + excerptText + '"');
