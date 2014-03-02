@@ -14,6 +14,7 @@ exports.config = {
       defaultExtension: 'js',
       joinTo: {
         'app.js': /^app/,
+        'env.js': /^app\/env\.js$/,
         'vendor.js': new RegExp('^vendor\/' + environment + '\/.+\.js$')
       },
       order: {
@@ -70,6 +71,7 @@ exports.config = {
           defaultExtension: 'js',
           joinTo: {
             'app.js': /^app/,
+            'env.js': /^app\/env\.js$/,
             'vendor.js': new RegExp('^vendor\/' + environment)
           },
           order: {

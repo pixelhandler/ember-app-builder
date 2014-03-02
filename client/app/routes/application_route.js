@@ -5,7 +5,7 @@ module.exports = App.ApplicationRoute = Ember.Route.extend({
     return this.store.find('post');
   },
 
-  sessionUrl: 'http://107.170.232.223:8888/sessions',
+  sessionUrl: Ember.ENV.API_HOST + '/sessions',
 
   actions: {
     login: function () {
