@@ -67,6 +67,11 @@ exports.config = {
       sourceMaps: false,
       files: {
         javascripts: {
+          defaultExtension: 'js',
+          joinTo: {
+            'app.js': /^app/,
+            'vendor.js': new RegExp('^vendor\/' + environment)
+          },
           order: {
             before: [
               'vendor/'+ environment +'/jquery.min.js',
@@ -74,6 +79,9 @@ exports.config = {
               'vendor/'+ environment +'/ember.prod.js',
               'vendor/'+ environment +'/ember-data.prod.js',
               'app/app.js'
+            ],
+            after: [
+              'app/init.js'
             ]
           }
         }

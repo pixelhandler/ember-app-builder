@@ -1,7 +1,7 @@
-<h4>Posts Archive</h4>
+<h3>Posts Archive</h3>
 <dl class="Blog-list">
   {{#each model}}
-    <dt class="Blog-list-date">{{format-date date}}</dt>
+    <dt class="Blog-list-date u-greenTxt">{{format-date date}}</dt>
     <dd class="Blog-list-link u-cf">
       {{#link-to 'post' this}}{{title}}{{/link-to}}
     </dd>

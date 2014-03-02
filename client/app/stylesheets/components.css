@@ -63,7 +63,9 @@
   font-size: .85em;
 }
 
-.Blog-excerpt {}
+.Blog-excerpt {
+  margin-bottom: 2em;
+}
 
 .Blog-list {
   line-height: 1.25em;
@@ -73,6 +75,7 @@
   width: 20%;
   float: left;
   margin-bottom: 1em;
+  font-weight: bold;
 }
 
 .Blog-list-item {

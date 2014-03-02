@@ -1,8 +1,8 @@
 {{#each model}}
   <div class="Blog-excerpt">
-    <h3 class="Blog-excerpt-title u-yellowTxt">
+    <h2 class="Blog-excerpt-title u-yellowTxt">
       {{#link-to 'post' this}}{{title}}{{/link-to}}
-    </h3>
+    </h2>
     <section class="Blog-excerpt-summary">
       {{format-markdown excerpt}}
     </section>
