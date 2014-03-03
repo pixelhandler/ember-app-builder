@@ -1,7 +1,8 @@
 'use-strict';
 
 window.EmberENV = {
-  API_HOST: null
+  API_HOST: null,
+  GOOGLE_ANALYTICS: 'UA-2687872-1'
 };
 
 var hostname = window.location.hostname;
