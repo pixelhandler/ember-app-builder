@@ -93,8 +93,8 @@ exports.config = {
           enabled: false
         },
         cleancss: {
-          keepSpecialComments: 0,
-          removeEmpty: true
+          keepSpecialComments: 1,
+          removeEmpty: false
         }
       }
     }
