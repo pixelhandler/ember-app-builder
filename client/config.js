@@ -91,6 +91,10 @@ exports.config = {
       plugins: {
         autoReload: {
           enabled: false
+        },
+        cleancss: {
+          keepSpecialComments: 0,
+          removeEmpty: true
         }
       }
     }
